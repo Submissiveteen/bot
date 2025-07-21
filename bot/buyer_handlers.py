@@ -1,6 +1,10 @@
+# Создаем обновлённый файл buyer_handlers.py со встроенным FSM и генерацией deeplink
+updated_buyer_handlers_path = os.path.join(bot_main_path, "bot", "buyer_handlers.py")
+
+buyer_handlers_code = '''
 from aiogram import Router, F
 from aiogram.fsm.state import StatesGroup, State
-from aiogram.types import Message, KeyboardButton, ReplyKeyboardMarkup
+from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
 
 from core.aggregator_selector import AggregatorSelector
@@ -9,13 +13,12 @@ import pandas as pd
 
 router = Router()
 
-# Загрузи таблицы один раз
-tbl1 = pd.read_csv("table_1.csv")
-tbl2 = pd.read_csv("table_2.csv")
-tbl3_500 = pd.read_csv("table_3_500.csv")
-tbl3_2000 = pd.read_csv("table_3_2000.csv")
-tbl3_10000 = pd.read_csv("table_3_10000.csv")
-tbl4 = pd.read_csv("table_4.csv")
+tbl1 = pd.read_csv("data/table_1.csv")
+tbl2 = pd.read_csv("data/table_2.csv")
+tbl3_500 = pd.read_csv("data/table_3_500.csv")
+tbl3_2000 = pd.read_csv("data/table_3_2000.csv")
+tbl3_10000 = pd.read_csv("data/table_3_10000.csv")
+tbl4 = pd.read_csv("data/table_4.csv")
 
 selector = AggregatorSelector(tbl2, tbl3_500, tbl3_2000, tbl3_10000, tbl1)
 deeplink_gen = DeeplinkGenerator(tbl4)
@@ -90,7 +93,7 @@ async def generate_link(msg: Message, state: FSMContext):
         "fiatAmount": amount,
         "walletAddress": wallet,
         "country": country,
-        "email": "test@email.com"  # временно для проверки
+        "email": "test@email.com"
     }
 
     try:
@@ -99,5 +102,17 @@ async def generate_link(msg: Message, state: FSMContext):
         await msg.answer(f"Ошибка генерации ссылки: {e}")
         return
 
-    await msg.answer(f"✅ Агрегатор: <b>{agg}</b>\n[Перейти к покупке]({link})", parse_mode="HTML")
+    await msg.answer(f"✅ Агрегатор: <b>{agg}</b>\\n[Перейти к покупке]({link})", parse_mode="HTML")
     await state.clear()
+'''
+
+# Сохраняем buyer_handlers.py
+with open(updated_buyer_handlers_path, 'w') as f:
+    f.write(buyer_handlers_code)
+
+# Проверим main.py — покажем весь код
+main_py_path = os.path.join(bot_main_path, "main.py")
+with open(main_py_path, 'r') as f:
+    main_code = f.read()
+
+main_code

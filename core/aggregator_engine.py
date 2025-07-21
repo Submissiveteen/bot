@@ -10,6 +10,7 @@ import yaml
 from core.utils import load_yaml_config, CachedValue
 from core.logging_config import setup_logging
 from core.signature import SIGNATURE_REGISTRY
+from core.deeplink_builder import DeeplinkBuilder, validate_deeplink_params, inject_signature
 
 setup_logging()
 
@@ -26,6 +27,9 @@ _DEFAULT_TIERS = {
     "TIER2": 2000,
     "TIER3": float("inf")
 }
+builder = DeeplinkBuilder(template)
+params = inject_signature(name, params, secret)
+deeplink = builder.render(params)
 
 class AggregatorEngine:
     def __init__(self):

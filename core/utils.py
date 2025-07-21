@@ -9,6 +9,12 @@ def load_yaml_config(path: Path, fallback: dict = None) -> dict:
     except Exception:
         return fallback or {}
 
+def normalize_currency(value: str) -> str:
+    # Приводит валюту к 3-буквенному коду
+    value = value.strip().upper()
+    aliases = {"EURO": "EUR", "USDOLLAR": "USD", "DOLLAR": "USD"}
+    return aliases.get(value, value)
+
 class CachedValue:
     def __init__(self, loader, ttl=300):
         self._loader = loader

@@ -1,13 +1,23 @@
-import re
+import yaml
+import time
+from pathlib import Path
 
-def validate_wallet_address(address: str) -> bool:
-    """
-    Простейшая валидация крипто-адреса (расширяется под нужные сети)
-    """
-    return bool(re.match(r"^(0x[a-fA-F0-9]{40}|[13][a-km-zA-HJ-NP-Z1-9]{25,34}|[a-zA-Z0-9]{26,35})$", address))
+def load_yaml_config(path: Path, fallback: dict = None) -> dict:
+    try:
+        with open(path, 'r') as f:
+            return yaml.safe_load(f)
+    except Exception:
+        return fallback or {}
 
-def validate_email(email: str) -> bool:
-    """
-    Простая валидация email
-    """
-    return bool(re.match(r"^[^@]+@[^@]+\.[^@]+$", email))
+class CachedValue:
+    def __init__(self, loader, ttl=300):
+        self._loader = loader
+        self._ttl = ttl
+        self._value = None
+        self._expires = 0
+
+    def get(self):
+        if time.time() > self._expires:
+            self._value = self._loader()
+            self._expires = time.time() + self._ttl
+        return self._value

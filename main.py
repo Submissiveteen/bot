@@ -1,4 +1,5 @@
 import asyncio
+from core.logging_config import setup_logging
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message
@@ -6,6 +7,7 @@ from handlers import buyer_handlers
 from dotenv import load_dotenv
 import os
 
+setup_logging()
 load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")
 

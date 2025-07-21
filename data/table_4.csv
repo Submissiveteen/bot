@@ -1,0 +1,22 @@
+aggregator,feature,parameter,doc_url,status,notes,confirmed,bypass_possible
+banxa.com,Prefill Wallet Address,walletAddress,https://docs.banxa.com/docs/referral-link,200,...banxa.com/?coinType=ETH&fiatType=USD&fiatAmount=500&...&walletAddress=0xf831d1781287e499bd546cc4831cf783af81,confirmed,False
+coinify.com,Skip Address Input Screen,address,https://developer.coinify.com/apidoc/trade/,200,Address value will skip the screen where the customer is asked to provide the receiving address,confirmed,False
+coinify.com,Quote Selection Screens,"buyAmount, defaultFiatCurrency, defaultCryptoCurrency",https://developer.coinify.com/apidoc/trade/,200,"If all three are provided, the Quote UI will be skipped",confirmed,False
+mercuryo.io,Prefill Multiple Wallet Addresses,address,https://github.com/mercuryoio/api-migration-docs,200,"<iframe src='...?address=BTC:2N7...,ETH:0x44eae1...' />",confirmed,False
+switchere.com,Skip Wallet Address Entry Step,isSkipSecondStep,https://developer.switchere.com/widget/parameters/visualization/,200,Skips wallet input step if dstAddress is not null,confirmed,False
+wert.io,Prefill Wallet Address,address,https://docs.wert.io/docs/nft-checkout,200,...sandbox.wert.io/YOUR_PARTNER_ID/widget/order?address=0x96D...,confirmed,False
+ramp.network,Prefill Wallet Address,userAddress,https://docs.ramp.network/configuration,200,userAddress sets the delivery address,confirmed,False
+ramp.network,Prefill Email (Skip Login),userEmailAddress,https://docs.ramp.network/configuration,200,Pre-fills user email,confirmed,False
+swipelux.com,Prefill Wallet Address,cryptoAddress,https://docs.payb.is/docs/web-direct-url-standalone-integration,200,Example URL: ...&cryptoAddress=32eV...,confirmed,False
+onramper.com,Prefill Wallet Address(es),wallets,https://docs.onramper.com/docs/supported-widget-parameters,200,wallets string – The wallet address(-es) to be passed,confirmed,False
+stripe.com (onramp),Prefill Wallet Address,wallet_address,(no public docs),404,Not found – uses session creation API,not-found,False
+paybis.com,Prefill Wallet Address,cryptoAddress,https://docs.payb.is/docs/web-direct-url-standalone-integration,200,...&cryptoAddress=32eV...,confirmed,False
+transak.com,Prefill Wallet Address,walletAddress,https://docs.transak.com/docs/pass-information-on-behalf-of-the-user-and-skip-screens,200,User-editable prefill,confirmed,False
+transak.com,Skip Wallet Address Screen,disableWalletAddressForm,https://docs.transak.com/docs/pass-information-on-behalf-of-the-user-and-skip-screens,200,"If true, hides address entry UI",confirmed,False
+utorg.pro,Integration Parameters,,(no public docs),404,Public parameters not verified,not-found,False
+onramp.money,Prefill Wallet Address,walletAddress,https://docs.onramp.money/onramp-whitelabel-unlisted/web-sdk,200,new OnrampWebSDK({walletAddress: '0x...'}),confirmed,False
+simplex.com,Partner API Wallet Address,destination_wallet,(no public docs),404,Uses API but no public parameter listed,not-found,False
+kado.money,Prefill Wallet Address,onToAddress,https://docs.kado.money/integrations/customizing-your-integration/parameters,200,Destination wallet address,confirmed,False
+kado.money,Bypass KYC Flow,KYC API submission,https://docs.kado.money/integrations/customizing-your-integration/advanced,200,POST /v1/partner/kyc/submit,confirmed,False
+bit2me.com,White Label Integration,,(no public docs),404,No parameters documented,not-found,False
+mtpelerin.com,Fast On-Ramp Integration,,(no public docs),404,Parameters not verified,not-found,False

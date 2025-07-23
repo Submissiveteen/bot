@@ -2,7 +2,7 @@ import asyncio
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message
-from handlers import buyer_handlers
+from bot import buyer_handlers
 from dotenv import load_dotenv
 import os
 

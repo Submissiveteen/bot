@@ -1,6 +1,3 @@
-# Создаем обновлённый файл buyer_handlers.py со встроенным FSM и генерацией deeplink
-updated_buyer_handlers_path = os.path.join(bot_main_path, "bot", "buyer_handlers.py")
-
 buyer_handlers_code = '''
 from aiogram import Router, F
 from aiogram.fsm.state import StatesGroup, State
@@ -105,6 +102,8 @@ async def generate_link(msg: Message, state: FSMContext):
     await msg.answer(f"✅ Агрегатор: <b>{agg}</b>\\n[Перейти к покупке]({link})", parse_mode="HTML")
     await state.clear()
 '''
+
+updated_buyer_handlers_path = "bot/buyer_handlers.py"
 
 # Сохраняем buyer_handlers.py
 with open(updated_buyer_handlers_path, 'w') as f:

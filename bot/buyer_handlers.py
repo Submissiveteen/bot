@@ -1,4 +1,4 @@
-buyer_handlers_code = '''
+buyer_handlers_code = """
 from aiogram import Router, F
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.types import Message
@@ -101,17 +101,17 @@ async def generate_link(msg: Message, state: FSMContext):
 
     await msg.answer(f"✅ Агрегатор: <b>{agg}</b>\\n[Перейти к покупке]({link})", parse_mode="HTML")
     await state.clear()
-'''
+"""
 
 updated_buyer_handlers_path = "bot/buyer_handlers.py"
 
 # Сохраняем buyer_handlers.py
-with open(updated_buyer_handlers_path, 'w') as f:
+with open(updated_buyer_handlers_path, "w") as f:
     f.write(buyer_handlers_code)
 
 # Проверим main.py — покажем весь код
 main_py_path = os.path.join(bot_main_path, "main.py")
-with open(main_py_path, 'r') as f:
+with open(main_py_path, "r") as f:
     main_code = f.read()
 
 main_code

@@ -1,0 +1,36 @@
+{
+  "file_counts": {
+    "total": 44,
+    "python": 12,
+    "markdown": 7,
+    "json": 4,
+    "csv": 9,
+    "images": 2,
+    "pdf": 4,
+    "other": 6
+  },
+  "entry_points": [
+    "main.py",
+    "crypto_decline_index/scrape_decline_index.py"
+  ],
+  "entry_points_count": 2,
+  "external_sdks": [
+    "aiogram",
+    "pandas",
+    "requests",
+    "cloudscraper",
+    "beautifulsoup4"
+  ],
+  "onramp_integrations": [
+    "Guardarian",
+    "Mt Pelerin",
+    "Changelly",
+    "Banxa",
+    "Paybis"
+  ],
+  "potential_hotspots": [
+    {"path": "bot/handlers.py", "lines": 137},
+    {"path": "crypto_decline_index/scrape_decline_index.py", "lines": 207},
+    {"path": "bot/keyboards.py", "lines": 136}
+  ]
+}

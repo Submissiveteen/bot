@@ -1,0 +1,14 @@
+[tool.ruff]
+line-length = 88
+exclude = ["bot/buyer_handlers.py"]
+
+[tool.ruff.lint]
+select = ["E", "F"]
+ignore = ["E501", "F403", "F405"]
+
+[tool.black]
+line-length = 88
+
+[tool.pytest.ini_options]
+pythonpath = ["crypto_decline_index"]
+addopts = "-q"

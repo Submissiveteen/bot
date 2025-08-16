@@ -1,0 +1,18 @@
+[
+  {
+    "id": "P0-1",
+    "title": "Fix dependencies and add dev tools",
+    "changes": ["requirements.txt", "pyproject.toml"],
+    "commands": ["pip install -r requirements.txt", "ruff check .", "ruff format .", "black --check ."],
+    "dod": ["Dependencies install", "Lint and format pass"],
+    "risk": "low"
+  },
+  {
+    "id": "P0-2",
+    "title": "Enable pytest discovery",
+    "changes": ["pyproject.toml", "crypto_decline_index/tests/__init__.py"],
+    "commands": ["pytest -q"],
+    "dod": ["Tests run without ModuleNotFoundError"],
+    "risk": "low"
+  }
+]

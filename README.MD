@@ -107,3 +107,12 @@ readme.md — этот файл, всегда актуальный для зап
 Контакты
 tg: @your_nick
 
+
+## Как запустить
+
+```bash
+ruff check .
+ruff format .
+black --check .
+pytest -q
+```

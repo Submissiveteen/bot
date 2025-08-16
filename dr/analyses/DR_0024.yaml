@@ -1,0 +1,81 @@
+category:
+- security
+- integration
+- testing
+- ui
+claims:
+- kind: primary
+  text: "### TL;DR  \n*Я физически не могу «нажать кнопку» `git push` изнутри ChatGPT\
+    \ — у меня нет интерактивного шелла и сетевого выхода к GitHub.  \nЗато я дал\
+    \ тебе **полный набор патчей, файлов и готовый шаблон PR**. Ниже — пошаговые команды,\
+    \ которыми ты (или CI) создаёшь ветку и Pull Request за 30 секунд.*\n\n---\n\n\
+    ## Почему ChatGPT не пушит сам\n- **Нет реального git-клиента.** Сервер, на котором\
+    \ работает ChatGPT, не выдаёт мне интерактивный терминал, чтобы выполнить `git\
+    \ push` или `gh pr create`.  \n- **Безопасность GitHub.** Даже при `write`-токене\
+    \ GitHub требует настоящего SSH/HTTPS сеанса; модель не может открывать такие\
+    \ соединения напрямую.  \n- **Политика платформы.** Мне разрешено генерировать\
+    \ контент (patch-файлы, markdown, YAML), но не выполнять сетевые побочные эффекты\
+    \ (push в ваш репозиторий).  \n\n*Итого: я могу «собрать» PR-пакет, но нажать\
+    \ «Create PR» должен любой процесс с реальным git-доступом — ты, GitHub CLI или\
+    \ GitHub Action.* citeturn0search3turn0search4\n\n---\n\n## Как сделать PR\
+    \ в 3 команды\n\n```bash\n# 1️⃣ Клонируешь либо переходишь в локальный репозиторий\n\
+    git checkout -b o3/roadmap/2025-07-22-draft master\n\n# 2️⃣ Сохраняешь мои patch-файлы,\
+    \ либо копируешь каталоги bot/, core/, config/, .github/\n# (если используешь\
+    \ *.patch, то:)\ngit apply 00-roadmap-S0-S6.patch\ngit add .\ngit commit -m \"\
+    Roadmap S0–S6 implementation [SAFE MERGE]\"\n\n# 3️⃣ Публикуешь ветку и создаёшь\
+    \ PR одной командой GitHub CLI\ngit push -u origin o3/roadmap/2025-07-22-draft\n\
+    gh pr create \\\n   --base master \\\n   --head o3/roadmap/2025-07-22-draft \\\
+    \n   --title \"[SAFE MERGE] Roadmap S0–S6\" \\\n   --body-file pr_description.md\n\
+    ```\n- `gh pr create` автоматически откроет Pull Request и выведет URL citeturn0search0turn0search1\
+    \  \n- **pr_description.md** — это сгенерированное мной описание (чек-листы, ссылки,\
+    \ теги). Просто скопируй его содержимое.  \n\n> *Нет GH CLI?* - Установи: `brew\
+    \ install gh` (macOS), `sudo apt install gh` (Ubuntu) и сделай `gh auth login`\
+    \ citeturn0search2  \n\n---\n\n## Если нужен полностью автоматический шаг\n\
+    \n1. **GitHub Action**: добавь job вроде\n\n```yaml\n- name: Create PR automatically\n\
+    \  run: gh pr create -B master -H o3/roadmap/2025-07-22-draft \\\n        --title\
+    \ \"[SAFE MERGE] Roadmap S0–S6\" \\\n        --body-file pr_description.md\n \
+    \ env:\n    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n```\n2. Дай workflow-runner\
+    \ права `contents: write`.  \n3. Action сам откроет PR при пуше ветки citeturn0search7\
+    \  \n\n---\n\n## Что уже готово\n\n| Файл/директория | Содержит | Фаза |\n|-----------------|----------|------|\n\
+    | `core/schema_validator.py` | валидация сумм, кошельков | S0 |\n| `config/aggregators.yml`\
+    \   | список агрегаторов + шаблоны deeplink | S3 |\n| `config/weights.yml`   \
+    \    | веса для скоринга | S3 |\n| `.github/workflows/ci.yml` | линтер + pytest\
+    \ + coverage | S4 |\n| `bot/…` патчи              | FSM + fail-closed + UX | S0–S2\
+    \ |\n| `pr_description.md`        | готовое описание PR | итог |\n\nПатчи и новые\
+    \ файлы лежат в ответе «Этап 7» — просто сохраните их в репозиторий перед шагом\
+    \ 2.  \n\n---\n\n## Дальнейшие шаги (forward-thinking)\n\n- **После merge**: настроить\
+    \ `gh pr merge --squash --auto` в CI, чтобы PR с тегом `[SAFE MERGE]` автоматически\
+    \ схлапывался после успешных тестов.  \n- **Автопубликация**: следующий релиз\
+    \ можно оформить GitHub Action-ом `release-please`, чтобы теги и ченджлоги генерировались\
+    \ из PR-описаний.  \n- **Бэкенд-мока**: для e2e-тестов добавить wiremock-стаб\
+    \ на внешнее API агрегатора, чтобы pipeline оставался детерминированным.\n\n---\n\
+    \n*Теперь у тебя есть полный пакет — остаётся прогнать 3 команды (или запустить\
+    \ Action), и PR появится в репозитории. Если нужно, могу сгенерировать `00-roadmap-S0-S6.patch`\
+    \ и `pr_description.md` одним файлом — скажи, и пришлю.*\n\nRespond in Russian"
+id: DR_0024
+recommendations:
+- change: review and implement recommendations
+  dod:
+  - HTTP 200 from integration endpoints
+  - UX review accepted
+  - pytest -q passes
+  - vulnerability scan clean
+  impact_paths:
+  - core/
+  - integrations/
+  - static/
+  - templates/
+  - tests/
+  risks:
+  - API rate limits
+  - data breaches
+  - flaky tests
+  - misconfigured auth
+  - third-party downtime
+sha256: 4fc987112793e0ec4ca2d0c8ba7885bffbbabdbd6c2827c324f691e1f837fe52
+span: L11810-L12147
+title: '### TL;DR  '
+trace:
+  file: updates/21-9-43-Bot_Development_Roadmap_Analysis.json
+  source_spans:
+  - L11810-L12147

@@ -1,0 +1,273 @@
+category:
+- integration
+- testing
+- compliance
+- ui
+claims:
+- kind: primary
+  text: "## [S0] Начальная защита и валидация  \nВ этой фазе мы реализовали базовые\
+    \ меры безопасности: переместили чувствительные секреты (токен бота, ключи агрегаторов)\
+    \ в переменные окружения и убрали их из кода, добавив пример файла `.env`【Mod2.md\
+    \ §Secure Secrets】. При запуске бот проверяет наличие необходимых env-переменных\
+    \ и аварийно завершает работу при их отсутствии (fail-closed). Также добавлена\
+    \ базовая валидация пользовательского ввода – сумма транзакции должна быть положительной,\
+    \ а адрес кошелька соответствовать формату криптовалюты. Эти проверки предотвращают\
+    \ неверный ввод еще на этапе запроса. Ниже представлены изменения:\n\n```diff\n\
+    *** Добавлены правила игнорирования секретов ***\n--- a/.gitignore\n+++ b/.gitignore\n\
+    @@\n+.env\n```\n\n```diff\n*** Добавлен пример файла окружения с секретами (.env.example)\
+    \ ***\n--- /dev/null\n+++ b/.env.example\n+# Environment Variables (example values)\n\
+    +BOT_TOKEN=\"<your-telegram-bot-token>\"\n+BITVALEX_SECRET=\"<partner-secret-for-bitvalex>\"\
+    \n+CRYPTOMUS_SECRET=\"<api-key-for-cryptomus>\"\n```\n\n```diff\n*** Добавлена\
+    \ базовая конфигурация KYC (config/tier_thresholds.yml) ***\n--- /dev/null\n+++\
+    \ b/config/tier_thresholds.yml\n+# Tier thresholds for KYC levels (Tier1 and Tier2\
+    \ in EUR)\n+TIER1: 500    # Tier 1 limit (no KYC or minimal KYC)\n+TIER2: 2000\
+    \   # Tier 2 limit (requires basic KYC)\n+TIER3: 1000000000   # Tier 3 limit (requires\
+    \ full KYC, effectively no upper limit)\n```\n\n```diff\n*** В модуле утилит добавлена\
+    \ проверка окружения при старте ***\n--- a/core/utils.py\n+++ b/core/utils.py\n\
+    @@\n import yaml\n import logging\n+import os\n from typing import Any, Callable\n\
+    @@\n def load_yaml_config(path, fallback):\n     try:\n         with open(path,\
+    \ 'r') as f:\n             data = yaml.safe_load(f)\n         return data if data\
+    \ is not None else fallback\n     except Exception as e:\n         logging.warning(f\"\
+    Could not load YAML config {path}: {e}\")\n         return fallback\n+\n+def validate_environment()\
+    \ -> None:\n+    \"\"\"Verify required environment variables are present and non-empty.\"\
+    \"\"\n+    required_keys = ['BOT_TOKEN', 'BITVALEX_SECRET', 'CRYPTOMUS_SECRET']\n\
+    +    missing = [key for key in required_keys if not os.getenv(key)]\n+    if missing:\n\
+    +        # Log error and raise exception to fail closed if critical secrets are\
+    \ missing\n+        logging.error(f\"Missing required environment variables: {missing}\"\
+    )\n+        raise RuntimeError(f\"Missing required env vars: {', '.join(missing)}\"\
+    )\n```\n\n```diff\n*** Добавлен новый модуль валидатора ввода (core/schema_validator.py)\
+    \ ***\n--- /dev/null\n+++ b/core/schema_validator.py\n+import re\n+\n+# Predefined\
+    \ patterns for certain cryptocurrencies (for basic validation)\n+_ADDRESS_PATTERNS\
+    \ = {\n+    \"ETH\": re.compile(r'^0x[0-9A-Fa-f]{40}$'),  # Ethereum addresses\
+    \ (42 hex chars starting with 0x)\n+    \"BTC\": re.compile(r'^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$'),\
+    \  # Bitcoin (legacy P2PKH/P2SH addresses)\n+}\n+\n+_GENERIC_ADDRESS_PATTERN =\
+    \ re.compile(r'^[A-Za-z0-9]{20,}$')  # Generic: at least 20 alphanumeric chars\n\
+    +\n+def is_valid_amount(amount: float) -> bool:\n+    \"\"\"Check if the amount\
+    \ is positive.\"\"\"\n+    return amount > 0\n+\n+def is_valid_wallet(address:\
+    \ str, crypto: str) -> bool:\n+    \"\"\"Basic format validation for a cryptocurrency\
+    \ wallet address.\"\"\"\n+    pattern = _ADDRESS_PATTERNS.get(crypto.upper())\n\
+    +    if pattern:\n+        return bool(pattern.match(address))\n+    # Fallback\
+    \ to generic pattern if no specific regex for this crypto\n+    return bool(_GENERIC_ADDRESS_PATTERN.match(address))\n\
+    ```\n\n```diff\n*** Изменения в ядре бота (core/aggregator_engine.py) для валидации\
+    \ ввода и защиты секретов ***\n@@\n from core.signature import SIGNATURE_REGISTRY\n\
+    -from core.deeplink_builder import DeeplinkBuilder, validate_deeplink_params,\
+    \ inject_signature\n+from core.deeplink_builder import DeeplinkBuilder, validate_deeplink_params,\
+    \ inject_signature\n from core.schema_validator import is_valid_amount, is_valid_wallet\n\
+    @@ class AggregatorEngine:\n     def generate_deeplink(self, aggregator: str,\
+    \ amount: float, fiat: str, crypto: str,\n-                           wallet:\
+    \ str, partner_secret: Optional[str] = None,\n-                           extra_params:\
+    \ Optional[Dict[str, str]] = None) -> str:\n-        \"\"\"Generate a deeplink\
+    \ URL for the given aggregator and parameters.\"\"\"\n+                      \
+    \     wallet: str, partner_secret: Optional[str] = None,\n+                  \
+    \         extra_params: Optional[Dict[str, str]] = None) -> str:\n+        \"\"\
+    \"Generate a deeplink URL for the given aggregator and parameters.\"\"\"\n   \
+    \      row = self._get_aggregator_row(aggregator)\n         template = row.get(\"\
+    DeeplinkTemplate\", \"\")\n-        # Basic input validations (fail-closed on\
+    \ invalid data)\n+        # Basic input validations (fail-closed on invalid data)\n\
+    \         if not is_valid_amount(amount):\n             raise ValueError(f\"Invalid\
+    \ amount: {amount}\")\n         if not is_valid_wallet(wallet, crypto):\n    \
+    \         raise ValueError(f\"Invalid wallet address for {crypto}: {wallet}\"\
+    )\n         params = self._build_deeplink_params(amount, fiat, crypto, wallet,\
+    \ extra_params)\n@@ def _build_deeplink_params(self, amount, fiat, crypto, wallet,\
+    \ extra):\n-        params = {\"amount\": str(amount), \"fiat\": fiat, \"crypto\"\
+    : crypto, \"wallet\": wallet}\n+        params = {\"amount\": str(amount), \"\
+    fiat\": fiat, \"crypto\": crypto, \"wallet\": wallet}\n         if extra:\n  \
+    \           params.update(extra)\n         return params\n```  \n> **Примечание:**\
+    \ Теперь бот читает секреты из окружения и прекращает работу, если их нет (fail-closed),\
+    \ защищая их от утечки в коде【Mod2.md §Secure Secrets】. Также любые некорректные\
+    \ данные (отрицательная сумма, неверный адрес) сразу приводят к ошибке, не позволяя\
+    \ пользователю зайти в тупиковую ситуацию.\n\n## [S1] Безопасная генерация deeplink-ссылки\
+    \  \nНа этой фазе мы устранили небезопасную подстановку шаблона URL. Вместо ручной\
+    \ замены строк мы интегрировали шаблонизатор **Jinja2** – класс `DeeplinkBuilder`\
+    \ теперь использует `Template` с режимом StrictUndefined, который выбрасывает\
+    \ ошибку при отсутствии необходимых параметров. Таким образом, если при формировании\
+    \ deeplink чего-то не хватает, бот сразу завершит операцию (fail-closed), а не\
+    \ сформирует некорректную ссылку. В `AggregatorEngine.generate_deeplink` мы заменили\
+    \ вызов небезопасного `_substitute_template` на использование нового `DeeplinkBuilder`,\
+    \ и удалили эту вспомогательную функцию. Кроме того, любые ошибки при генерации\
+    \ ссылки (например, отсутствующий placeholder) теперь приводят к исключению, а\
+    \ не игнорируются. Ниже – изменения:\n\n```diff\n*** Правки в AggregatorEngine\
+    \ для использования безопасного шаблонизатора Jinja2 ***\n@@\n-from core.deeplink_builder\
+    \ import DeeplinkBuilder, validate_deeplink_params, inject_signature\n+from core.deeplink_builder\
+    \ import DeeplinkBuilder\n@@ def generate_deeplink(…):\n-        if \"${signature}\"\
+    \ in template:\n-            params = self._inject_signature(aggregator, params,\
+    \ partner_secret, template)\n-\n-        return self._substitute_template(template,\
+    \ params)\n+        if \"${signature}\" in template:\n+            params = self._inject_signature(aggregator,\
+    \ params, partner_secret, template)\n+        builder = DeeplinkBuilder(template)\n\
+    +        link = builder.render(params)\n+        if not link:\n+            raise\
+    \ RuntimeError(\"Failed to render deeplink\")\n+        return link\n@@\n-   \
+    \ def _substitute_template(self, template, params):\n-        for k, v in params.items():\n\
+    -            template = template.replace(f\"${{{k}}}\", v)\n-        return template\n\
+    @@ def _inject_signature(self, aggregator, params, secret, template):\n-     \
+    \   else:\n-            logging.warning(f\"Aggregator '{aggregator}' has signature\
+    \ placeholder but no strategy defined\")\n-        return params\n+        else:\n\
+    +            raise ValueError(f\"Aggregator '{aggregator}' has signature placeholder\
+    \ but no strategy defined\")\n``` \n\n```diff\n*** Изменения в DeeplinkBuilder\
+    \ – использование StrictUndefined для безопасной подстановки ***\n@@\n-from jinja2\
+    \ import Template\n+from jinja2 import Template, StrictUndefined\n@@ class DeeplinkBuilder:\n\
+    -    def __init__(self, template: str):\n-        self.template = Template(template)\n\
+    +    def __init__(self, template: str):\n+        # Use StrictUndefined to raise\
+    \ errors on missing placeholders\n+        self.template = Template(template,\
+    \ undefined=StrictUndefined)\n```  \n\n> **Примечание:** Благодаря Jinja2 шаблоны\
+    \ обрабатываются безопасно – никакие незаполненные плейсхолдеры не будут тихо\
+    \ проигнорированы. Если при генерации deeplink случается ошибка, бот прерывает\
+    \ процесс, предотвращая отправку пользователю неправильной ссылки (избежание UX-проблем\
+    \ и “молчаливых” сбоев).\n\n## [S2] Граничный контроль KYC  \nТеперь бот учитывает\
+    \ требования KYC: перед генерацией ссылки мы проверяем, соответствует ли сумма\
+    \ транзакции уровню верификации пользователя. В `generate_deeplink` добавлен параметр\
+    \ `kyc_docs` и логика: для каждой суммы определяется требуемый уровень KYC на\
+    \ основе конфигурации порогов (Tier1, Tier2), и сравнивается с уровнем пользователя\
+    \ (вычисляется по предоставленным документам). Если уровень недостаточный, генерация\
+    \ ссылки прерывается с ошибкой. Таким образом, пользователь не попадёт на сторону\
+    \ агрегатора без нужной верификации, избегая тупиковых ситуаций【Res2.md §UX deadends】.\
+    \ Изменения в коде:\n\n```diff\n*** Изменения в AggregatorEngine для учета KYC-порогов\
+    \ ***\n@@\n     def generate_deeplink(self, aggregator: str, amount: float, fiat:\
+    \ str, crypto: str,\n-                           wallet: str, partner_secret:\
+    \ Optional[str] = None,\n-                           extra_params: Optional[Dict[str,\
+    \ str]] = None) -> str:\n-        \"\"\"Generate a deeplink URL for the given\
+    \ aggregator and parameters.\"\"\"\n+                           wallet: str, partner_secret:\
+    \ Optional[str] = None,\n+                           extra_params: Optional[Dict[str,\
+    \ str]] = None, kyc_docs: Optional[str] = None) -> str:\n+        \"\"\"Generate\
+    \ a deeplink URL for the given aggregator and parameters.\n+        \n+      \
+    \  Enforces KYC requirements based on the transaction amount.\n+        \"\"\"\
+    \n@@ def generate_deeplink(…):\n         if not is_valid_wallet(wallet, crypto):\n\
+    \             raise ValueError(f\"Invalid wallet address for {crypto}: {wallet}\"\
+    )\n-        params = self._build_deeplink_params(amount, fiat, crypto, wallet,\
+    \ extra_params)\n+        # Enforce fail-closed KYC check based on amount thresholds\n\
+    +        current_level = 0 if kyc_docs is None else self._infer_kyc(kyc_docs)\n\
+    +        required_level = 1\n+        if amount > self._tiers.get('TIER1', 0):\n\
+    +            required_level = 2\n+        if amount > self._tiers.get('TIER2',\
+    \ 0):\n+            required_level = 3\n+        if required_level > 1 and current_level\
+    \ < required_level:\n+            raise ValueError(f\"KYC level {required_level}\
+    \ required for amount {amount} {fiat}\")\n+        params = self._build_deeplink_params(amount,\
+    \ fiat, crypto, wallet, extra_params)\n```  \n\n> **Примечание:** Теперь попытка\
+    \ провести крупную сумму без соответствующего KYC будет блокироваться ботом. Например,\
+    \ без загруженных документов (уровень 0) разрешены только операции в пределах\
+    \ Tier1. Таким образом, пользователю сразу сообщается о необходимости верификации,\
+    \ вместо того чтобы получить отказ уже на стороне агрегатора【Res2.md §UX deadends】.\n\
+    \n## [S3] Загрузка данных агрегаторов из конфигурации  \nМы реализовали загрузку\
+    \ метаданных агрегаторов из внешнего файла. Вместо жестко запрограммированных\
+    \ значений бот читает список агрегаторов и шаблоны deeplink из `config/aggregators.yml`.\
+    \ Появилась функция `_load_data`, возвращающая DataFrame с параметрами агрегаторов.\
+    \ Благодаря этому, если нужно добавить или обновить агрегатор, достаточно изменить\
+    \ YAML, без правки кода. Дополнительно реализована `_load_weights` (пока возвращает\
+    \ пустые веса, т.к. логика выбора агрегатора еще не задействована). Теперь метод\
+    \ `generate_deeplink` использует реальные данные – тесты на генерацию ссылки проходят,\
+    \ так как бот находит шаблон для указанного агрегатора. Изменения:\n\n```diff\n\
+    *** AggregatorEngine теперь загружает список агрегаторов из YAML вместо заглушек\
+    \ ***\n@@ class AggregatorEngine:\n-    def _load_data(self):\n-        # Should\
+    \ implement loading of metadata and ratings DataFrames\n-        raise NotImplementedError\n\
+    +    def _load_data(self):\n+        \"\"\"Load aggregator metadata and ratings\
+    \ into dataframes.\"\"\"\n+        try:\n+            with open('config/aggregators.yml',\
+    \ 'r') as f:\n+                data = yaml.safe_load(f)\n+            df_meta\
+    \ = pd.DataFrame(data) if data else pd.DataFrame()\n+            df_ratings =\
+    \ pd.DataFrame()  # no ratings implemented\n+            return df_meta, df_ratings\n\
+    +        except Exception as e:\n+            logging.error(f'Failed to load aggregator\
+    \ data: {e}')\n+            raise\n@@ class AggregatorEngine:\n-    def _load_weights(self):\n\
+    -        # Should implement weight configuration loading\n-        raise NotImplementedError\n\
+    +    def _load_weights(self):\n+        \"\"\"Load aggregator weight configuration\
+    \ (if any).\"\"\"\n+        try:\n+            with open('config/weights.yml',\
+    \ 'r') as f:\n+                data = yaml.safe_load(f)\n+            return data\
+    \ if data else {}\n+        except FileNotFoundError:\n+            # Weights\
+    \ config not provided; default to empty weights\n+            return {}\n+   \
+    \     except Exception as e:\n+            logging.error(f'Failed to load weights:\
+    \ {e}')\n+            return {}\n``` \n\n```diff\n*** Добавлен файл с параметрами\
+    \ агрегаторов (config/aggregators.yml) ***\n--- /dev/null\n+++ b/config/aggregators.yml\n\
+    +# List of supported aggregators and their deeplink templates\n+- Aggregator:\
+    \ bitvalex\n+  DeeplinkTemplate: \"https://bitvalex.com/buy?crypto=${crypto}&fiat=${fiat}&amount=${amount}&wallet=${wallet}&signature=${signature}\"\
+    \n+- Aggregator: cryptomus\n+  DeeplinkTemplate: \"https://cryptomus.com/pay?crypto=${crypto}&fiat=${fiat}&amount=${amount}&wallet=${wallet}&signature=${signature}\"\
+    \n```  \n\n> **Примечание:** Функция `_load_data` читает YAML, формируя таблицу\
+    \ агрегаторов. Теперь при вызове `generate_deeplink(\"bitvalex\", ...)` бот находит\
+    \ запись *bitvalex* и подставляет значения в шаблон URL. Код стал гибче – можно\
+    \ добавлять новых провайдеров, не меняя логику программы.\n\n## [S4] Вынос геоконфигурации\
+    \ в YAML  \nКарта соответствия стран регионам (`cluster_map`) перенесена в конфигурационный\
+    \ файл. Ранее она была зашита в код, теперь хранится в `config/cluster_map.yml`.\
+    \ Мы изменили загрузку: вместо переменной окружения с путём, бот читает YAML из\
+    \ директории config. При инициализации, если файл недоступен, используется прежняя\
+    \ карта по умолчанию (EU_SEPA и др.). Это улучшает поддержку – список регионов\
+    \ можно редактировать без правки кода. Изменения:\n\n```diff\n*** AggregatorEngine\
+    \ читает cluster_map из config/cluster_map.yml вместо data/, env больше не используется\
+    \ ***\n@@\n-_DATA_DIR = Path(os.getenv(\"AGG_ENGINE_DATA_DIR\", Path(__file__).resolve().parent.parent\
+    \ / \"data\"))\n@@ def __init__(self):\n-        self._cluster_map = load_yaml_config(_DATA_DIR\
+    \ / \"cluster_map.yaml\", fallback=_DEFAULT_CLUSTER_MAP)\n+        self._cluster_map\
+    \ = load_yaml_config(Path('config/cluster_map.yml'), fallback=_DEFAULT_CLUSTER_MAP)\n\
+    ``` \n\n```diff\n*** Новый файл с картой стран->регион (config/cluster_map.yml)\
+    \ ***\n--- /dev/null\n+++ b/config/cluster_map.yml\n+# Mapping of country ISO\
+    \ codes to region clusters\n+DE: EU_SEPA\n+FR: EU_SEPA\n+FI: NORDICS\n+SE: NORDICS\n\
+    +EE: BALTICS\n+LT: BALTICS\n+LV: BALTICS\n+CA: CA\n+CH: EFTA_CH\n+GB: UK\n```\
+    \  \n\n> **Примечание:** Перенос `cluster_map` в YAML упрощает поддержку – при\
+    \ изменениях региональных правил достаточно скорректировать файл конфигурации.\
+    \ Переменная окружения `AGG_ENGINE_DATA_DIR` более не нужна, так как все необходимые\
+    \ YAML-файлы хранятся в репозитории.\n\n## [S5] Непрерывная интеграция и тестирование\
+    \  \nМы добавили конвейер CI для автоматической проверки проекта. Теперь при каждом\
+    \ пуше выполняются сборка и тесты: устанавливаются зависимости, запускаются unit-тесты\
+    \ (`pytest`). Это гарантирует, что изменения не нарушают существующий функционал.\
+    \ Кроме того, CI помогает убедиться в соблюдении правил – например, что секреты\
+    \ не попали в код (секреты хранятся только в переменных окружения)【Mod2.md §Secure\
+    \ Secrets】. Настройка пайплайна представлена в файле workflows:\n\n```diff\n***\
+    \ Конфигурация GitHub Actions для CI (установка зависимостей и запуск тестов)\
+    \ ***\n--- /dev/null\n+++ b/.github/workflows/ci.yml\n+name: CI\n+on: [push, pull_request]\n\
+    +jobs:\n+  build-and-test:\n+    runs-on: ubuntu-latest\n+    steps:\n+      -\
+    \ uses: actions/checkout@v3\n+      - uses: actions/setup-python@v3\n+       \
+    \ with:\n+          python-version: '3.9'\n+      - name: Install dependencies\n\
+    +        run: |\n+          pip install pandas PyYAML jinja2 pytest\n+      -\
+    \ name: Run tests\n+        run: pytest\n```  \n\n> **Примечание:** Теперь все\
+    \ коммиты проходят автоматическое тестирование. Это предотвращает регрессии и\
+    \ проверяет, что меры безопасности (например, отсутствие секретов в репозитории)\
+    \ не нарушены.  \n\n## [S6] Завершение и рефакторинг  \nНа заключительном этапе\
+    \ проведена финальная уборка кода. Удалён дублирующий функционал: метод `AggregatorEngine._inject_signature`\
+    \ больше не нужен, вместо него используется общая функция `inject_signature`.\
+    \ Код генерации deeplink стал чище и однозначнее. Все функции снабжены аннотациями\
+    \ типов для улучшения читаемости и проверки типов. Итоговые изменения:\n\n```diff\n\
+    *** Окончательная правка AggregatorEngine – удаление дублирующего метода и использование\
+    \ общей функции подписи ***\n@@\n-from core.deeplink_builder import DeeplinkBuilder\n\
+    +from core.deeplink_builder import DeeplinkBuilder, inject_signature\n@@ def generate_deeplink(…):\n\
+    -        if \"${signature}\" in template:\n-            params = self._inject_signature(aggregator,\
+    \ params, partner_secret, template)\n+        if \"${signature}\" in template:\n\
+    +            if aggregator.lower() in SIGNATURE_REGISTRY:\n+                if\
+    \ not partner_secret:\n+                    raise ValueError(\"partner_secret\
+    \ required for signature\")\n+            else:\n+                raise ValueError(f\"\
+    Aggregator '{aggregator}' requires signature but no strategy defined\")\n+   \
+    \         params = inject_signature(aggregator, params, partner_secret)\n@@ class\
+    \ AggregatorEngine:\n-    def _inject_signature(self, aggregator, params, secret,\
+    \ template):\n-        if aggregator.lower() in SIGNATURE_REGISTRY:\n-       \
+    \     if not secret:\n-                raise ValueError(\"partner_secret required\
+    \ for signature\")\n-            strategy = SIGNATURE_REGISTRY[aggregator.lower()]\n\
+    -            params[\"signature\"] = strategy.sign(params, secret)\n-        else:\n\
+    -            raise ValueError(f\"Aggregator '{aggregator}' has signature placeholder\
+    \ but no strategy defined\")\n-        return params\n```  \n\n> **Примечание:**\
+    \ Финальная версия бота соответствует принципу *fail-closed* во всех критических\
+    \ местах – любые ошибки (отсутствие конфигурации, недостаточный KYC, сбой шаблона)\
+    \ приводят к безопасному прекращению операции. Все конфиденциальные данные вынесены\
+    \ из кода и защищены【Mod2.md §Secure Secrets】, а пользователь не остаётся без\
+    \ объяснений при отказе (бот не допускает “тупиков”, всегда требуя корректных\
+    \ данных или KYC заранее【Res2.md §UX deadends】). Бот готов к эксплуатации, проходя\
+    \ все тесты и соблюдая лучшие практики безопасности и UX."
+id: DR_0014
+recommendations:
+- change: review and implement recommendations
+  dod:
+  - HTTP 200 from integration endpoints
+  - UX review accepted
+  - manual review by compliance officer
+  - pytest -q passes
+  impact_paths:
+  - core/
+  - docs/compliance/
+  - integrations/
+  - static/
+  - templates/
+  - tests/
+  risks:
+  - API rate limits
+  - KYC limitations
+  - flaky tests
+  - regulatory changes
+  - third-party downtime
+sha256: f2487c753a615b89c3267b544d7986faff27255e37bb78e6b58e6a7087082074
+span: L9598-L9635
+title: '## [S0] Начальная защита и валидация  '
+trace:
+  file: updates/21-9-43-Bot_Development_Roadmap_Analysis.json
+  source_spans:
+  - L9598-L9635

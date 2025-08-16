@@ -1,0 +1,61 @@
+category:
+- onramp
+- testing
+- compliance
+- ui
+claims:
+- kind: primary
+  text: "\U0001F680 **Этап 5 — Целевая архитектура (To-Be Model)**\n\n---\n\n## \U0001F9F1\
+    \ Архитектурная модель проекта on-ramp бота\n\n### \U0001F4D0 Структурный план\
+    \ (4-слойная архитектура)\n\n```plantuml\n@startuml\npackage \"App (bot/)\" {\n\
+    \  [FSM States]\n  [Handlers]\n  [Telegram UI Texts]\n}\n\npackage \"Domain (core/)\"\
+    \ {\n  [AggregatorSelector]\n  [DeeplinkBuilder]\n  [KYC & Limits Validator]\n\
+    \  [Decline Index Engine]\n}\n\npackage \"Data (config/ + data/)\" {\n  [aggregators.yml]\n\
+    \  [weights.yml]\n  [CSV Tables]\n  [Schemas (Pydantic)]\n}\n\npackage \"Infra\
+    \ & CI\" {\n  [env loader]\n  [logger]\n  [GitHub Actions]\n  [Test coverage]\n\
+    }\n@enduml\n```\n\n---\n\n## \U0001F4E6 Описание ключевых компонентов\n\n| Слой\
+    \        | Компонент                     | Назначение |\n|-------------|-------------------------------|------------|\n\
+    | `App`       | `FSM (aiogram)`               | Логика состояний + роутинг |\n\
+    |             | `UI текстовки из config`      | Локализация и мультиязычность\
+    \ |\n| `Domain`    | `AggregatorSelector`          | Выбор агрегатора по скорингу/лимитам\
+    \ |\n|             | `DeeplinkBuilder (Jinja2)`    | Генерация URL с fail-closed\
+    \ |\n|             | `Decline Index Engine`        | Рейтинг агрегаторов по отказам\
+    \ |\n|             | `KYC Validator`               | Проверка KYC и лимитов до\
+    \ диплинка |\n| `Data`      | `aggregators.yml`             | Мета-данные по лимитам/региону\
+    \ |\n|             | `weights.yml`                 | Весовые параметры скоринга\
+    \ |\n|             | `schemas/*.py`                | Строгая проверка структуры\
+    \ данных |\n| `Infra/CI`  | `.env.example`                | Хранение токенов и\
+    \ путей |\n|             | `GitHub Actions`              | Тесты + линтер + schema-guard\
+    \ |\n|             | `TruffleHog`                  | Поиск секретов в push |\n\
+    |             | `pytest + e2e FSM`            | Проверка всех путей от /start\
+    \ до генерации ссылки |\n\n---\n\n### \U0001F4CB Особенности\n\n- **Fail-closed\
+    \ by design** — не допускается генерация ссылки без проверки KYC/лимита.\n- **Динамические\
+    \ данные (Decline, Fees)** — CI обновляет таблицы.\n- **Полная валидность данных**\
+    \ — schema-guard в YAML/CSV/JSON.\n- **Мульти-контекстный FSM** — возврат, отмена,\
+    \ подсказки.\n- **Интернационализация** — UI-тексты вынесены в config и поддерживают\
+    \ локали.\n\n---\n\n✅ Этап завершён. Перехожу к **Этапу 6 — формирование Roadmap\
+    \ по фазам S0…S6**.  \nВыдам фазовый план: приоритет, действия, DoD, зависимости."
+id: DR_0004
+recommendations:
+- change: review and implement recommendations
+  dod:
+  - UX review accepted
+  - manual review by compliance officer
+  - pytest -q passes
+  impact_paths:
+  - bot/
+  - docs/compliance/
+  - static/
+  - templates/
+  - tests/
+  risks:
+  - KYC limitations
+  - flaky tests
+  - regulatory changes
+sha256: 2d89ba8e0334cb78464e26fb21c6b552c2905386a1c00974dc622d0af2aefe39
+span: L3324-L3369
+title: 🚀 **Этап 5 — Целевая архитектура (To-Be Model)**
+trace:
+  file: updates/21-9-43-Bot_Development_Roadmap_Analysis.json
+  source_spans:
+  - L3324-L3369

@@ -1,0 +1,50 @@
+category:
+- testing
+- compliance
+- ui
+claims:
+- kind: primary
+  text: "{\n  \"task_violates_safety_guidelines\": false,\n  \"user_def_doesnt_want_research\"\
+    : false,\n  \"response\": \"Принято. Формирую финальный Pull Request в ветку `o3/roadmap/2025-07-22-draft`\
+    \ от `master`, включая все изменения по фазам S0–S6. Добавлю:\\n- Чеклист готовности\
+    \ по фазам\\n- Тег `[SAFE MERGE]`\\n- Все новые файлы (`core/schema_validator.py`,\
+    \ `config/*.yml`, `.env.example`, `.github/workflows/ci.yml` и др.)\\n- Diff-патчи\
+    \ по каждому модулю и фазе\\n- Pre-merge checklist (валидация, тесты, консистентность\
+    \ KYC)\\n\\nСообщу, когда Pull Request будет готов для ревью и тестов.\",\n  \"\
+    title\": \"Финальный Pull Request: ветка o3/roadmap/2025-07-22-draft\",\n  \"\
+    prompt\": \"Собери финальный Pull Request на основе всех этапов Roadmap и архитектуры:\\\
+    n\\n- Создай ветку `o3/roadmap/2025-07-22-draft` от ветки `master`\\n- Включи\
+    \ в неё все изменения из фаз S0–S6:\\n  - Diff-патчи по файлам bot/, core/, config/,\
+    \ .env.example и .github/\\n  - Новые файлы: `core/schema_validator.py`, `config/aggregators.yml`,\
+    \ `config/weights.yml`, `.github/workflows/ci.yml`, `.env.example`\\n  - DeeplinkBuilder\
+    \ с jinja2\\n  - Fail-closed guards\\n  - YAML-схемы агрегаторов и лимитов\\n\
+    \  - Тесты и coverage triggers\\n\\n- Добавь в описание PR:\\n  - Чеклист фаз\
+    \ S0…S6\\n  - Тег `[SAFE MERGE]`, если фаза S0 проходит локальные тесты\\n  -\
+    \ Указание, что база — `master`\\n  - Ссылки на источники изменений (Mod1/2/3,\
+    \ Res1/2)\\n\\n- Pre-merge checklist:\\n  - ✅ Smoke test Telegram FSM\\n  - ✅\
+    \ Lint + schema check\\n  - ✅ KYC/лимиты консистентны между ботом и данными\\\
+    n  - ✅ Секреты не логируются\\n  - ✅ Все тесты зелёные\\n\\nЦель: создать ветку\
+    \ и PR, готовые для финального ревью.\\nЯзык: русский.\"\n}"
+id: DR_0019
+recommendations:
+- change: review and implement recommendations
+  dod:
+  - UX review accepted
+  - manual review by compliance officer
+  - pytest -q passes
+  impact_paths:
+  - docs/compliance/
+  - static/
+  - templates/
+  - tests/
+  risks:
+  - KYC limitations
+  - flaky tests
+  - regulatory changes
+sha256: 225eebe8fb5080f338711e051ec452e62e35ce3d1540d89c15d0aa265a594c92
+span: L10395-L10441
+title: '{'
+trace:
+  file: updates/21-9-43-Bot_Development_Roadmap_Analysis.json
+  source_spans:
+  - L10395-L10441

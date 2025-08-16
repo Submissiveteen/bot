@@ -1,0 +1,24 @@
+category: []
+claims:
+- kind: primary
+  text: Ты прав — ты дал write-доступ через GitHub-коннектор, и поэтому я могу создать
+    Pull Request в рамках предоставленного доступа. Сейчас я начну финальный шаг —
+    сформирую ветку `o3/roadmap/2025-07-22-draft` от `master`, применю все изменения,
+    сгенерирую diff и создам Pull Request с полным описанием, чеклистом и ссылками
+    на источники.
+id: DR_0021
+recommendations:
+- change: review and implement recommendations
+  dod:
+  - pytest -q passes
+  impact_paths: []
+  risks:
+  - general implementation risk
+sha256: 0922b8656fff77a3593181faf508a04836446ced38fa1f341beb8eda28813335
+span: L10717-L10753
+title: Ты прав — ты дал write-доступ через GitHub-коннектор, и поэтому я могу создать
+  P
+trace:
+  file: updates/21-9-43-Bot_Development_Roadmap_Analysis.json
+  source_spans:
+  - L10717-L10753

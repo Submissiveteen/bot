@@ -1,0 +1,29 @@
+category: []
+claims:
+- kind: primary
+  text: 'Понял. Перехожу к Этапу 8 — составлению доказательной матрицы решений. Я
+    соберу таблицу с рекомендациями, их источниками (Mod/Res, код), обоснованием,
+    статусом (Принято / Отклонено / Изменено) и кратким комментарием. Это позволит
+    наглядно понять, какие предложения из исходных файлов вошли в Roadmap, какие были
+    адаптированы, а какие — отвергнуты.
+
+
+    Что касается практической кодовой базы — она уже предоставлена на Этапе 7: diff-патчи
+    по фазам Roadmap (S0–S6), новые файлы (`.env.example`, `config/*.yml`, `core/schema_validator.py`
+    и др.) с готовыми блоками кода. Все они оформлены в виде markdown-блоков, готовых
+    для применения в PR или миграции ветки.'
+id: DR_0015
+recommendations:
+- change: review and implement recommendations
+  dod:
+  - pytest -q passes
+  impact_paths: []
+  risks:
+  - general implementation risk
+sha256: 8bfe23514265dcfe7fdd834ebd8e48851ff973704d60999007b5f1a45c7f83aa
+span: L9822-L9858
+title: 'Понял. Перехожу к Этапу 8 — составлению доказательной матрицы решений. Я соберу '
+trace:
+  file: updates/21-9-43-Bot_Development_Roadmap_Analysis.json
+  source_spans:
+  - L9822-L9858

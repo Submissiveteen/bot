@@ -1,0 +1,25 @@
+category:
+- testing
+claims:
+- kind: primary
+  text: Хочешь ли ты, чтобы я перешёл к Этапу 6 — разработке план-графика Roadmap
+    по фазам S0–S6 (MVP → масштабирование → CI/CD → аналитика → лояльность и т.д.)
+    с приоритизацией по усилиям и импакту? Или есть другой этап, который ты хочешь
+    вставить до этого?
+id: DR_0009
+recommendations:
+- change: review and implement recommendations
+  dod:
+  - pytest -q passes
+  impact_paths:
+  - tests/
+  risks:
+  - flaky tests
+sha256: 2bd880fa149f3f221d16073f9e7dd37e80090ca52c2e389371f3265e108ff42f
+span: L8969-L9005
+title: Хочешь ли ты, чтобы я перешёл к Этапу 6 — разработке план-графика Roadmap по
+  фаз
+trace:
+  file: updates/21-9-43-Bot_Development_Roadmap_Analysis.json
+  source_spans:
+  - L8969-L9005

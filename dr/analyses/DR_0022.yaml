@@ -1,0 +1,41 @@
+category:
+- testing
+- ui
+claims:
+- kind: primary
+  text: "{\n  \"task_violates_safety_guidelines\": false,\n  \"user_def_doesnt_want_research\"\
+    : false,\n  \"response\": \"Ты прав — ты дал write-доступ через GitHub-коннектор,\
+    \ и поэтому я могу создать Pull Request в рамках предоставленного доступа. Сейчас\
+    \ я начну финальный шаг — сформирую ветку `o3/roadmap/2025-07-22-draft` от `master`,\
+    \ применю все изменения, сгенерирую diff и создам Pull Request с полным описанием,\
+    \ чеклистом и ссылками на источники.\",\n  \"title\": \"Создание Pull Request\
+    \ и ветки o3/roadmap/2025-07-22-draft\",\n  \"prompt\": \"Создай рабочую ветку\
+    \ `o3/roadmap/2025-07-22-draft` от ветки `master` в репозитории `Submissiveteen/bot`.\\\
+    n\\nПримени в этой ветке все изменения, сформированные в ходе фазы Roadmap (S0–S6):\\\
+    n- Diff-патчи\\n- Новые файлы (`core/schema_validator.py`, `config/aggregators.yml`,\
+    \ `weights.yml`, `.env.example`, `.github/workflows/ci.yml`)\\n- Обновления FSM,\
+    \ fail-closed guards, валидация конфигов\\n\\nЗатем создай Pull Request с:\\n-\
+    \ Тегом `[SAFE MERGE]`\\n- Чеклистом по фазам (S0–S6)\\n- Pre-merge checklist\
+    \ (smoke, lint, test, секреты)\\n- Ссылками на входные файлы (Mod1.md, Mod2.md,\
+    \ Mod3.md, Res1.md, Res2.md)\\n\\nОписание и язык Pull Request — **русский**.\
+    \ Ветка-источник — `o3/roadmap/2025-07-22-draft`. Целевая ветка — `master`.\"\n\
+    }"
+id: DR_0022
+recommendations:
+- change: review and implement recommendations
+  dod:
+  - UX review accepted
+  - pytest -q passes
+  impact_paths:
+  - static/
+  - templates/
+  - tests/
+  risks:
+  - flaky tests
+sha256: 419b575f3d48dc30c86f6c952e8382a56bf140ddddcb41aacab68577d708aa15
+span: L10754-L10800
+title: '{'
+trace:
+  file: updates/21-9-43-Bot_Development_Roadmap_Analysis.json
+  source_spans:
+  - L10754-L10800

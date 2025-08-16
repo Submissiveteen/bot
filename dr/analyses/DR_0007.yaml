@@ -1,0 +1,52 @@
+category:
+- onramp
+- testing
+- compliance
+- ui
+claims:
+- kind: primary
+  text: "{\n  \"task_violates_safety_guidelines\": false,\n  \"user_def_doesnt_want_research\"\
+    : false,\n  \"response\": \"Приступаю к Этапу 5 — разработке целевой архитектуры\
+    \ To-Be. Я структурирую её по слоям (App/Bot, Domain/Core, Data/Config, CI/Infra),\
+    \ отражу связи между модулями, выделю ключевые компоненты (deeplink, агрегаторы,\
+    \ логирование, скоринг, KYC, конфигурация), и добавлю предложенные улучшения из\
+    \ предыдущих этапов. Финальный результат — архитектурная диаграмма + пояснение\
+    \ с источниками.\",\n  \"title\": \"Целевая архитектура Telegram on-ramp бота\
+    \ (Этап 5)\",\n  \"prompt\": \"Сформируй целевую архитектуру (To-Be) Telegram\
+    \ on-ramp бота, используя результаты предыдущих этапов:\\n\\n- Раздели архитектуру\
+    \ на слои:\\n  - App (бот, FSM, локализация, UI-сценарии)\\n  - Domain (core логика:\
+    \ генерация диплинков, агрегаторный скоринг, селектор)\\n  - Data (конфиги агрегаторов,\
+    \ YAML-лимиты, весовые схемы)\\n  - Infra (взаимодействие с Telegram, хранилище\
+    \ состояний FSM, CI/CD, мониторинг)\\n\\n- Отрази:\\n  - fail-closed guards, strategy\
+    \ registration, валидаторы схем\\n  - поддержку динамических лимитов, Decline\
+    \ Index, deeplink-шаблоны\\n  - мультиязычность и систему дружелюбных ошибок\\\
+    n  - поддержку локальных конфигов (`config/aggregators.yml`, `.env`, `weights.yml`)\\\
+    n  - тесты и CI workflow\\n\\n- Выведи архитектуру в виде:\\n  1. PlantUML-совместимого\
+    \ блока (текстовая схема)\\n  2. Текстового описания ключевых компонентов\\n\\\
+    n- Свяжи элементы с исходными предложениями из Mod1/2/3 и Res1/2, а также best\
+    \ practices (MoonPay, Ramp и др.)\\n\\nЦель — подготовить платформу для Roadmap\
+    \ S0–S6.\\nЯзык: русский.\"\n}"
+id: DR_0007
+recommendations:
+- change: review and implement recommendations
+  dod:
+  - UX review accepted
+  - manual review by compliance officer
+  - pytest -q passes
+  impact_paths:
+  - bot/
+  - docs/compliance/
+  - static/
+  - templates/
+  - tests/
+  risks:
+  - KYC limitations
+  - flaky tests
+  - regulatory changes
+sha256: d6f4eeaacf8728e8dc99bf27b096d8f1d610b261727a33dfeb51f106fb4a1681
+span: L7765-L7811
+title: '{'
+trace:
+  file: updates/21-9-43-Bot_Development_Roadmap_Analysis.json
+  source_spans:
+  - L7765-L7811

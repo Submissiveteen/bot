@@ -1,0 +1,42 @@
+category:
+- testing
+- compliance
+claims:
+- kind: primary
+  text: 'Принято. Формирую финальный Pull Request в ветку `o3/roadmap/2025-07-22-draft`
+    от `master`, включая все изменения по фазам S0–S6. Добавлю:
+
+    - Чеклист готовности по фазам
+
+    - Тег `[SAFE MERGE]`
+
+    - Все новые файлы (`core/schema_validator.py`, `config/*.yml`, `.env.example`,
+    `.github/workflows/ci.yml` и др.)
+
+    - Diff-патчи по каждому модулю и фазе
+
+    - Pre-merge checklist (валидация, тесты, консистентность KYC)
+
+
+    Сообщу, когда Pull Request будет готов для ревью и тестов.'
+id: DR_0018
+recommendations:
+- change: review and implement recommendations
+  dod:
+  - manual review by compliance officer
+  - pytest -q passes
+  impact_paths:
+  - docs/compliance/
+  - tests/
+  risks:
+  - KYC limitations
+  - flaky tests
+  - regulatory changes
+sha256: 81aaafcd6cc2bfb444e392bf0818e721b9d69d91cbcbb03cf94ebd86f9745864
+span: L10358-L10394
+title: Принято. Формирую финальный Pull Request в ветку `o3/roadmap/2025-07-22-draft`
+  о
+trace:
+  file: updates/21-9-43-Bot_Development_Roadmap_Analysis.json
+  source_spans:
+  - L10358-L10394

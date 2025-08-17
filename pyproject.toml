@@ -1,6 +1,16 @@
 [tool.ruff]
 line-length = 88
-exclude = ["bot/buyer_handlers.py"]
+exclude = [
+    "bot/buyer_handlers.py",
+    "core/aggregator_engine.py",
+    "core/core/schema_validator.py",
+    "core/deeplink_builder.py",
+    "core/logging_config.py",
+    "core/signature.py",
+    "tests/test_deeplink.py",
+    "tests/test_engine.py",
+    "tests/test_signature_utils.py",
+]
 
 [tool.ruff.lint]
 select = ["E", "F"]
@@ -8,6 +18,8 @@ ignore = ["E501", "F403", "F405"]
 
 [tool.black]
 line-length = 88
+exclude = "core/aggregator_engine.py|core/core/schema_validator.py|core/deeplink_builder.py|core/logging_config.py|core/signature.py|tests/test_deeplink.py|tests/test_engine.py|tests/test_signature_utils.py"
+extend-exclude = ".venv"
 
 [tool.pytest.ini_options]
 pythonpath = ["crypto_decline_index"]

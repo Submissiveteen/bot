@@ -26,7 +26,10 @@
     ],
     "dr_ids": [
       "DR_0001"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [],
+    "roadmap_ref": "plan/roadmap_v1.md#L5-L10"
   },
   {
     "id": "DR_0002",
@@ -60,7 +63,12 @@
     ],
     "dr_ids": [
       "DR_0002"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0001"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L11-L16"
   },
   {
     "id": "DR_0003",
@@ -89,7 +97,12 @@
     ],
     "dr_ids": [
       "DR_0003"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0002"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L17-L22"
   },
   {
     "id": "DR_0004",
@@ -119,7 +132,12 @@
     ],
     "dr_ids": [
       "DR_0004"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0003"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L23-L28"
   },
   {
     "id": "DR_0005",
@@ -154,7 +172,12 @@
     ],
     "dr_ids": [
       "DR_0005"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0004"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L29-L34"
   },
   {
     "id": "DR_0006",
@@ -189,7 +212,12 @@
     ],
     "dr_ids": [
       "DR_0006"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0005"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L35-L40"
   },
   {
     "id": "DR_0007",
@@ -219,7 +247,12 @@
     ],
     "dr_ids": [
       "DR_0007"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0006"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L41-L46"
   },
   {
     "id": "DR_0008",
@@ -257,7 +290,12 @@
     ],
     "dr_ids": [
       "DR_0008"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0007"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L47-L52"
   },
   {
     "id": "DR_0009",
@@ -279,7 +317,12 @@
     ],
     "dr_ids": [
       "DR_0009"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0008"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L56-L61"
   },
   {
     "id": "DR_0010",
@@ -302,7 +345,12 @@
     ],
     "dr_ids": [
       "DR_0010"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0009"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L62-L67"
   },
   {
     "id": "DR_0011",
@@ -332,7 +380,12 @@
     ],
     "dr_ids": [
       "DR_0011"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0010"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L68-L73"
   },
   {
     "id": "DR_0012",
@@ -352,7 +405,13 @@
     ],
     "dr_ids": [
       "DR_0012"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0011"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L74-L79",
+    "needs_clarification": true
   },
   {
     "id": "DR_0013",
@@ -382,7 +441,12 @@
     ],
     "dr_ids": [
       "DR_0013"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0012"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L80-L85"
   },
   {
     "id": "DR_0014",
@@ -416,7 +480,12 @@
     ],
     "dr_ids": [
       "DR_0014"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0013"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L86-L91"
   },
   {
     "id": "DR_0015",
@@ -436,7 +505,13 @@
     ],
     "dr_ids": [
       "DR_0015"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0014"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L92-L97",
+    "needs_clarification": true
   },
   {
     "id": "DR_0016",
@@ -462,7 +537,12 @@
     ],
     "dr_ids": [
       "DR_0016"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0015"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L98-L103"
   },
   {
     "id": "DR_0017",
@@ -482,7 +562,13 @@
     ],
     "dr_ids": [
       "DR_0017"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0016"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L107-L112",
+    "needs_clarification": true
   },
   {
     "id": "DR_0018",
@@ -508,7 +594,12 @@
     ],
     "dr_ids": [
       "DR_0018"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0017"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L113-L118"
   },
   {
     "id": "DR_0019",
@@ -537,7 +628,12 @@
     ],
     "dr_ids": [
       "DR_0019"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0018"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L119-L124"
   },
   {
     "id": "DR_0020",
@@ -571,7 +667,12 @@
     ],
     "dr_ids": [
       "DR_0020"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0019"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L125-L130"
   },
   {
     "id": "DR_0021",
@@ -591,7 +692,13 @@
     ],
     "dr_ids": [
       "DR_0021"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0020"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L131-L136",
+    "needs_clarification": true
   },
   {
     "id": "DR_0022",
@@ -616,7 +723,12 @@
     ],
     "dr_ids": [
       "DR_0022"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0021"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L137-L142"
   },
   {
     "id": "DR_0023",
@@ -647,7 +759,12 @@
     ],
     "dr_ids": [
       "DR_0023"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0022"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L143-L148"
   },
   {
     "id": "DR_0024",
@@ -680,6 +797,11 @@
     ],
     "dr_ids": [
       "DR_0024"
-    ]
+    ],
+    "status": "pending",
+    "depends_on": [
+      "DR_0023"
+    ],
+    "roadmap_ref": "plan/roadmap_v1.md#L149-L154"
   }
 ]

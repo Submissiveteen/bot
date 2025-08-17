@@ -1,0 +1,30 @@
+# Checklist V1
+
+## Remaining
+- [ ] DR_0001 — review and implement recommendations
+- [ ] DR_0002 — review and implement recommendations
+- [ ] DR_0003 — review and implement recommendations
+- [ ] DR_0004 — review and implement recommendations
+- [ ] DR_0005 — review and implement recommendations
+- [ ] DR_0006 — review and implement recommendations
+- [ ] DR_0007 — review and implement recommendations
+- [ ] DR_0008 — review and implement recommendations
+- [ ] DR_0009 — review and implement recommendations
+- [ ] DR_0010 — review and implement recommendations
+- [ ] DR_0011 — review and implement recommendations
+- [ ] DR_0012 — review and implement recommendations
+- [ ] DR_0013 — review and implement recommendations
+- [ ] DR_0014 — review and implement recommendations
+- [ ] DR_0015 — review and implement recommendations
+- [ ] DR_0016 — review and implement recommendations
+- [ ] DR_0017 — review and implement recommendations
+- [ ] DR_0018 — review and implement recommendations
+- [ ] DR_0019 — review and implement recommendations
+- [ ] DR_0020 — review and implement recommendations
+- [ ] DR_0021 — review and implement recommendations
+- [ ] DR_0022 — review and implement recommendations
+- [ ] DR_0023 — review and implement recommendations
+- [ ] DR_0024 — review and implement recommendations
+
+## Done
+

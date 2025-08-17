@@ -1,19 +1,152 @@
-# Roadmap v1
+# Roadmap V1 (Conservative)
 
 ## P0
-- **DR_P0_001 – Fix dependencies and add dev tools**
-  - changes: `requirements.txt`, `pyproject.toml`
-  - commands: `pip install -r requirements.txt`, `ruff check .`, `ruff format .`, `black --check .`
-  - DoD: dependencies install; lint/format pass
-  - risk: low
-- **DR_P0_002 – Enable pytest discovery**
-  - changes: `pyproject.toml`, `crypto_decline_index/tests/__init__.py`
-  - commands: `pytest -q`
-  - DoD: tests run without ModuleNotFoundError
-  - risk: low
+- **DR_0001** — review and implement recommendations
+  - changes: docs/compliance/, static/, templates/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: UX review accepted, manual review by compliance officer, pytest -q passes
+  - risk: KYC limitations, flaky tests, regulatory changes
+  - ref: dr/analyses/DR_0001.yaml (L1587-L2396)
+- **DR_0002** — review and implement recommendations
+  - changes: core/, docs/compliance/, integrations/, static/, templates/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: HTTP 200 from integration endpoints, UX review accepted, manual review by compliance officer, pytest -q passes
+  - risk: API rate limits, KYC limitations, flaky tests, regulatory changes, third-party downtime
+  - ref: dr/analyses/DR_0002.yaml (L2718-L2755)
+- **DR_0003** — review and implement recommendations
+  - changes: docs/compliance/, static/, templates/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: UX review accepted, manual review by compliance officer, pytest -q passes
+  - risk: KYC limitations, flaky tests, regulatory changes
+  - ref: dr/analyses/DR_0003.yaml (L3150-L3195)
+- **DR_0004** — review and implement recommendations
+  - changes: bot/, docs/compliance/, static/, templates/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: UX review accepted, manual review by compliance officer, pytest -q passes
+  - risk: KYC limitations, flaky tests, regulatory changes
+  - ref: dr/analyses/DR_0004.yaml (L3324-L3369)
+- **DR_0005** — review and implement recommendations
+  - changes: bot/, core/, docs/compliance/, integrations/, static/, templates/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: HTTP 200 from integration endpoints, UX review accepted, manual review by compliance officer, pytest -q passes
+  - risk: API rate limits, KYC limitations, flaky tests, regulatory changes, third-party downtime
+  - ref: dr/analyses/DR_0005.yaml (L3411-L3454)
+- **DR_0006** — review and implement recommendations
+  - changes: bot/, core/, docs/compliance/, integrations/, static/, templates/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: HTTP 200 from integration endpoints, UX review accepted, manual review by compliance officer, pytest -q passes
+  - risk: API rate limits, KYC limitations, flaky tests, regulatory changes, third-party downtime
+  - ref: dr/analyses/DR_0006.yaml (L4289-L7541)
+- **DR_0007** — review and implement recommendations
+  - changes: bot/, docs/compliance/, static/, templates/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: UX review accepted, manual review by compliance officer, pytest -q passes
+  - risk: KYC limitations, flaky tests, regulatory changes
+  - ref: dr/analyses/DR_0007.yaml (L7765-L7811)
+- **DR_0008** — review and implement recommendations
+  - changes: bot/, core/, docs/compliance/, integrations/, static/, templates/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: HTTP 200 from integration endpoints, UX review accepted, manual review by compliance officer, pytest -q passes, vulnerability scan clean
+  - risk: API rate limits, KYC limitations, data breaches, flaky tests, misconfigured auth, regulatory changes, third-party downtime
+  - ref: dr/analyses/DR_0008.yaml (L7863-L8917)
 
 ## P1
-_No DR analyses found._
+- **DR_0009** — review and implement recommendations
+  - changes: tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: pytest -q passes
+  - risk: flaky tests
+  - ref: dr/analyses/DR_0009.yaml (L8969-L9005)
+- **DR_0010** — review and implement recommendations
+  - changes: static/, templates/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: UX review accepted
+  - risk: general implementation risk
+  - ref: dr/analyses/DR_0010.yaml (L9104-L9140)
+- **DR_0011** — review and implement recommendations
+  - changes: bot/, docs/compliance/, static/, templates/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: UX review accepted, manual review by compliance officer, pytest -q passes
+  - risk: KYC limitations, flaky tests, regulatory changes
+  - ref: dr/analyses/DR_0011.yaml (L9141-L9187)
+- **DR_0012** — review and implement recommendations
+  - changes: 
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: pytest -q passes
+  - risk: general implementation risk
+  - ref: dr/analyses/DR_0012.yaml (L9328-L9364)
+- **DR_0013** — review and implement recommendations
+  - changes: bot/, docs/compliance/, static/, templates/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: UX review accepted, manual review by compliance officer, pytest -q passes
+  - risk: KYC limitations, flaky tests, regulatory changes
+  - ref: dr/analyses/DR_0013.yaml (L9500-L9546)
+- **DR_0014** — review and implement recommendations
+  - changes: core/, docs/compliance/, integrations/, static/, templates/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: HTTP 200 from integration endpoints, UX review accepted, manual review by compliance officer, pytest -q passes
+  - risk: API rate limits, KYC limitations, flaky tests, regulatory changes, third-party downtime
+  - ref: dr/analyses/DR_0014.yaml (L9598-L9635)
+- **DR_0015** — review and implement recommendations
+  - changes: 
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: pytest -q passes
+  - risk: general implementation risk
+  - ref: dr/analyses/DR_0015.yaml (L9822-L9858)
+- **DR_0016** — review and implement recommendations
+  - changes: bot/, static/, templates/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: UX review accepted, pytest -q passes
+  - risk: flaky tests
+  - ref: dr/analyses/DR_0016.yaml (L9859-L9905)
 
 ## P2
-_No DR analyses found._
+- **DR_0017** — review and implement recommendations
+  - changes: 
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: pytest -q passes
+  - risk: general implementation risk
+  - ref: dr/analyses/DR_0017.yaml (L10223-L10259)
+- **DR_0018** — review and implement recommendations
+  - changes: docs/compliance/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: manual review by compliance officer, pytest -q passes
+  - risk: KYC limitations, flaky tests, regulatory changes
+  - ref: dr/analyses/DR_0018.yaml (L10358-L10394)
+- **DR_0019** — review and implement recommendations
+  - changes: docs/compliance/, static/, templates/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: UX review accepted, manual review by compliance officer, pytest -q passes
+  - risk: KYC limitations, flaky tests, regulatory changes
+  - ref: dr/analyses/DR_0019.yaml (L10395-L10441)
+- **DR_0020** — review and implement recommendations
+  - changes: core/, docs/compliance/, integrations/, static/, templates/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: HTTP 200 from integration endpoints, UX review accepted, manual review by compliance officer, pytest -q passes
+  - risk: API rate limits, KYC limitations, flaky tests, regulatory changes, third-party downtime
+  - ref: dr/analyses/DR_0020.yaml (L10493-L10530)
+- **DR_0021** — review and implement recommendations
+  - changes: 
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: pytest -q passes
+  - risk: general implementation risk
+  - ref: dr/analyses/DR_0021.yaml (L10717-L10753)
+- **DR_0022** — review and implement recommendations
+  - changes: static/, templates/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: UX review accepted, pytest -q passes
+  - risk: flaky tests
+  - ref: dr/analyses/DR_0022.yaml (L10754-L10800)
+- **DR_0023** — review and implement recommendations
+  - changes: core/, docs/compliance/, integrations/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: HTTP 200 from integration endpoints, manual review by compliance officer, pytest -q passes
+  - risk: API rate limits, KYC limitations, flaky tests, regulatory changes, third-party downtime
+  - ref: dr/analyses/DR_0023.yaml (L10852-L11416)
+- **DR_0024** — review and implement recommendations
+  - changes: core/, integrations/, static/, templates/, tests/
+  - commands: ruff check ., ruff format ., black --check ., pytest -q
+  - DoD: HTTP 200 from integration endpoints, UX review accepted, pytest -q passes, vulnerability scan clean
+  - risk: API rate limits, data breaches, flaky tests, misconfigured auth, third-party downtime
+  - ref: dr/analyses/DR_0024.yaml (L11810-L12147)
+

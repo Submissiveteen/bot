@@ -14,3 +14,7 @@ DR_0011 adds Stage 6 title placeholder.
 DR_0013 adds code generation intro asset.
 DR_0014 documents environment setup assets.
 DR_0016 adds decision matrix placeholder.
+DR_0019 adds regulatory banner.
+DR_0020 adds delay diagram.
+DR_0022 adds template preview asset.
+DR_0024 adds security scan badge.

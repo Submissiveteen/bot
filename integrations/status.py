@@ -17,3 +17,17 @@ def secure_ping(url: str, timeout: int = 5) -> int:
     if not url.startswith("https://"):
         return 0
     return ping(url, timeout=timeout)
+
+
+def is_service_up(url: str, timeout: int = 5) -> bool:
+    """Return True if service responds with HTTP 200."""
+    return ping(url, timeout=timeout) == 200
+
+
+def head_ping(url: str = "https://httpbin.org/status/200", timeout: int = 5) -> int:
+    """Perform HEAD request and return status code."""
+    try:
+        resp = requests.head(url, timeout=timeout)
+        return resp.status_code
+    except requests.exceptions.Timeout:
+        return 0

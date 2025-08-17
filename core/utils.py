@@ -8,7 +8,7 @@ from typing import Dict
 import logging
 import yaml
 
-from integrations import status as status_integration
+from integrations import httpbin, status as status_integration
 
 
 def load_yaml_config(path: Path, fallback: dict | None = None) -> dict:
@@ -107,3 +107,18 @@ def dummy_service_ok() -> bool:
 def secure_service_ok(url: str) -> bool:
     """Return True if URL is HTTPS and responds with 200."""
     return status_integration.secure_ping(url) == 200
+
+
+def delayed_httpbin_ping(delay: int = 1) -> int:
+    """Proxy to httpbin delayed endpoint returning its status code."""
+    return httpbin.delayed_ping(delay)
+
+
+def service_up(url: str) -> bool:
+    """Check if service responds with HTTP 200."""
+    return status_integration.is_service_up(url)
+
+
+def head_service_status(url: str) -> int:
+    """Return status code from HEAD request to service."""
+    return status_integration.head_ping(url)

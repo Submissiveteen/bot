@@ -12,3 +12,7 @@ DR_0008 enforces HTTPS for service checks.
 DR_0011 documents roadmap stage messaging.
 DR_0013 notes code generation phase start.
 DR_0014 adds environment validation guidelines.
+DR_0018 notes pending compliance review tasks.
+DR_0019 expands template and asset notes.
+DR_0020 documents delayed integration check.
+DR_0023 adds service availability check.

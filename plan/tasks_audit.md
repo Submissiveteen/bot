@@ -15,3 +15,11 @@
 | DR_0014 | Integration and reviews pending; no auth. |
 | DR_0015 | Clarification required; no repo changes. |
 | DR_0016 | UX review pending; no auth. |
+| DR_0017 | Clarification pending; implemented without repo changes. |
+| DR_0018 | Compliance review pending; no auth. |
+| DR_0019 | UX and compliance reviews pending; no auth. |
+| DR_0020 | UX and compliance reviews pending; no auth. |
+| DR_0021 | Clarification pending; implemented without repo changes. |
+| DR_0022 | UX review pending; no auth. |
+| DR_0023 | Compliance review pending; no auth. |
+| DR_0024 | UX review and vulnerability scan pending; no auth. |

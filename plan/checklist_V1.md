@@ -1,14 +1,6 @@
 # Checklist V1
 
 ## Remaining
-- [ ] DR_0017 — review and implement recommendations
-- [ ] DR_0018 — review and implement recommendations
-- [ ] DR_0019 — review and implement recommendations
-- [ ] DR_0020 — review and implement recommendations
-- [ ] DR_0021 — review and implement recommendations
-- [ ] DR_0022 — review and implement recommendations
-- [ ] DR_0023 — review and implement recommendations
-- [ ] DR_0024 — review and implement recommendations
 
 ## Done
 - [x] DR_0001 — review and implement recommendations (waiting-external, [PR #8](https://github.com/Submissiveteen/bot/pull/8); follow-up [PR #5](https://github.com/Submissiveteen/bot/pull/5))
@@ -79,3 +71,31 @@
 - [x] DR_0016 — review and implement recommendations (waiting-external)
   - [x] pytest -q passes
   - [ ] UX review accepted (pending-auth)
+- [x] DR_0017 — review and implement recommendations
+  - [x] pytest -q passes
+- [x] DR_0018 — review and implement recommendations (waiting-external)
+  - [x] pytest -q passes
+  - [ ] Compliance sign-off (pending-auth)
+- [x] DR_0019 — review and implement recommendations (waiting-external)
+  - [x] pytest -q passes
+  - [ ] UX review accepted (pending-auth)
+  - [ ] Compliance sign-off (pending-auth)
+- [x] DR_0020 — review and implement recommendations (waiting-external)
+  - [x] pytest -q passes
+  - [x] HTTP 200 from integration endpoints
+  - [ ] UX review accepted (pending-auth)
+  - [ ] Compliance sign-off (pending-auth)
+- [x] DR_0021 — review and implement recommendations
+  - [x] pytest -q passes
+- [x] DR_0022 — review and implement recommendations (waiting-external)
+  - [x] pytest -q passes
+  - [ ] UX review accepted (pending-auth)
+- [x] DR_0023 — review and implement recommendations (waiting-external)
+  - [x] pytest -q passes
+  - [x] HTTP 200 from integration endpoints
+  - [ ] Compliance sign-off (pending-auth)
+- [x] DR_0024 — review and implement recommendations (waiting-external)
+  - [x] pytest -q passes
+  - [x] HTTP 200 from integration endpoints
+  - [ ] UX review accepted (pending-auth)
+  - [ ] Vulnerability scan clean (pending-auth)

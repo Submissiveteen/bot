@@ -563,7 +563,7 @@
     "dr_ids": [
       "DR_0017"
     ],
-    "status": "pending",
+    "status": "done",
     "depends_on": [
       "DR_0016"
     ],
@@ -595,7 +595,7 @@
     "dr_ids": [
       "DR_0018"
     ],
-    "status": "pending",
+    "status": "waiting-external",
     "depends_on": [
       "DR_0017"
     ],
@@ -629,7 +629,7 @@
     "dr_ids": [
       "DR_0019"
     ],
-    "status": "pending",
+    "status": "waiting-external",
     "depends_on": [
       "DR_0018"
     ],
@@ -668,7 +668,7 @@
     "dr_ids": [
       "DR_0020"
     ],
-    "status": "pending",
+    "status": "waiting-external",
     "depends_on": [
       "DR_0019"
     ],
@@ -693,7 +693,7 @@
     "dr_ids": [
       "DR_0021"
     ],
-    "status": "pending",
+    "status": "done",
     "depends_on": [
       "DR_0020"
     ],
@@ -724,7 +724,7 @@
     "dr_ids": [
       "DR_0022"
     ],
-    "status": "pending",
+    "status": "waiting-external",
     "depends_on": [
       "DR_0021"
     ],
@@ -760,7 +760,7 @@
     "dr_ids": [
       "DR_0023"
     ],
-    "status": "pending",
+    "status": "waiting-external",
     "depends_on": [
       "DR_0022"
     ],
@@ -798,7 +798,7 @@
     "dr_ids": [
       "DR_0024"
     ],
-    "status": "pending",
+    "status": "waiting-external",
     "depends_on": [
       "DR_0023"
     ],

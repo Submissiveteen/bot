@@ -57,6 +57,8 @@ def normalize_country(name: str) -> str:
     return name.strip().lower()
 
 
+# ---- DR_0003–DR_0008 helpers (из bundle) ----
+
 def generate_uuid() -> str:
     """Return random UUID string."""
     return str(uuid.uuid4())

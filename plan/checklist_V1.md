@@ -1,6 +1,6 @@
-## Checklist V1
+# Checklist V1
 
-### Remaining
+## Remaining
  - [ ] DR_0009 — review and implement recommendations
  - [ ] DR_0010 — review and implement recommendations
  - [ ] DR_0011 — review and implement recommendations
@@ -18,13 +18,13 @@
  - [ ] DR_0023 — review and implement recommendations
  - [ ] DR_0024 — review and implement recommendations
 
-### Done
-- [ ] DR_0001 — review and implement recommendations (waiting-external, [PR #5](https://github.com/Submissiveteen/bot/pull/5))
-  - [x] pytest -q passes ([PR #5](https://github.com/Submissiveteen/bot/pull/5))
+## Done
+- [x] DR_0001 — review and implement recommendations (waiting-external, [PR #8](https://github.com/Submissiveteen/bot/pull/8); follow-up [PR #5](https://github.com/Submissiveteen/bot/pull/5))
+  - [x] pytest -q passes ([PR #8](https://github.com/Submissiveteen/bot/pull/8))
   - [ ] UX review accepted (pending-auth)
   - [ ] Compliance sign-off (pending-auth)
 
-- [ ] DR_0002 — review and implement recommendations (waiting-external, [PR #9](https://github.com/Submissiveteen/bot/pull/9))
+- [x] DR_0002 — review and implement recommendations (waiting-external, [PR #9](https://github.com/Submissiveteen/bot/pull/9))
   - [x] pytest -q passes ([PR #9](https://github.com/Submissiveteen/bot/pull/9))
   - [x] HTTP 200 from integration endpoints ([PR #9](https://github.com/Submissiveteen/bot/pull/9))
   - [ ] UX review accepted (pending-auth)

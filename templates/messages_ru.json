@@ -1,11 +1,11 @@
 {
-    "welcome": "Привет!",
-    "integration_ok": "Интеграция работает",
-    "compliance_note": "Все проверки пройдены",
-    "start": "Начать",
-    "service_ok": "Сервис доступен",
-    "service_fail": "Сервис недоступен",
-    "service_timeout": "Сервис не отвечает",
-    "farewell": "До свидания",
-    "service_insecure": "Небезопасный URL"
+  "welcome": "Привет!",
+  "integration_ok": "Интеграция работает",
+  "compliance_note": "Все проверки пройдены",
+  "start": "Начать",
+  "service_ok": "Сервис доступен",
+  "service_fail": "Сервис недоступен",
+  "service_timeout": "Сервис не отвечает",
+  "farewell": "До свидания",
+  "service_insecure": "Небезопасный URL"
 }

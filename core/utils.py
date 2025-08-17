@@ -18,3 +18,8 @@ def validate_email(email: str) -> bool:
     Простая валидация email
     """
     return bool(re.match(r"^[^@]+@[^@]+\.[^@]+$", email))
+
+
+def normalize_country(name: str) -> str:
+    """Return lowercased country name without surrounding spaces."""
+    return name.strip().lower()

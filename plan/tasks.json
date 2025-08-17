@@ -64,7 +64,7 @@
     "dr_ids": [
       "DR_0002"
     ],
-    "status": "pending",
+    "status": "waiting-external",
     "depends_on": [
       "DR_0001"
     ],

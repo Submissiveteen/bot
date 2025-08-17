@@ -200,32 +200,41 @@ def reddit_comments(brand: str, size: int = 100) -> List[str]:
     return comments
 
 
-# ── MAIN LOOP ─────────────────────────────────────────────────────────────
-header = ["aggregator", "trustpilot", "reddit", "decline_index"]
-new_rows: List[list] = []
+def main() -> int:
+    """Run scraping pipeline and return success status."""
 
-for brand in AGGREGATORS:
-    log.info("→ %s", brand)
+    # ── MAIN LOOP ────────────────────────────────────────────────────────
+    header = ["aggregator", "trustpilot", "reddit", "decline_index"]
+    new_rows: List[list] = []
 
-    tp = trustpilot_reviews(brand)
-    tp_ratio = decline_ratio(tp)
-    log.info("  Trustpilot: %4d revs, ratio=%.3f", len(tp), tp_ratio)
+    for brand in AGGREGATORS:
+        log.info("→ %s", brand)
 
-    rd = reddit_comments(brand)
-    rd_ratio = decline_ratio(rd)
-    log.info("  Reddit:     %4d cmts, ratio=%.3f", len(rd), rd_ratio)
+        tp = trustpilot_reviews(brand)
+        tp_ratio = decline_ratio(tp)
+        log.info("  Trustpilot: %4d revs, ratio=%.3f", len(tp), tp_ratio)
 
-    row = [brand, tp_ratio, rd_ratio, round((tp_ratio + rd_ratio) / 2, 3)]
-    append_row(CSV_OUTPUT, row, header)
-    new_rows.append(row)
+        rd = reddit_comments(brand)
+        rd_ratio = decline_ratio(rd)
+        log.info("  Reddit:     %4d cmts, ratio=%.3f", len(rd), rd_ratio)
 
-# ── FINAL SORT (атомарно) ─────────────────────────────────────────────────
-if CSV_OUTPUT.exists():
-    df_final = pd.read_csv(CSV_OUTPUT)
-    df_final = df_final.sort_values("decline_index")
-    tmp = CSV_OUTPUT.with_suffix(".tmp")
-    df_final.to_csv(tmp, index=False, lineterminator="\n", float_format="%.3f")
-    tmp.replace(CSV_OUTPUT)
-    log.info("✅  decline_index.csv sorted & saved — %d rows total", len(df_final))
-else:
-    log.warning("No CSV created — nothing scraped?")
+        row = [brand, tp_ratio, rd_ratio, round((tp_ratio + rd_ratio) / 2, 3)]
+        append_row(CSV_OUTPUT, row, header)
+        new_rows.append(row)
+
+    # ── FINAL SORT (атомарно) ───────────────────────────────────────────
+    if CSV_OUTPUT.exists():
+        df_final = pd.read_csv(CSV_OUTPUT)
+        df_final = df_final.sort_values("decline_index")
+        tmp = CSV_OUTPUT.with_suffix(".tmp")
+        df_final.to_csv(tmp, index=False, lineterminator="\n", float_format="%.3f")
+        tmp.replace(CSV_OUTPUT)
+        log.info("✅  decline_index.csv sorted & saved — %d rows total", len(df_final))
+    else:
+        log.warning("No CSV created — nothing scraped?")
+
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

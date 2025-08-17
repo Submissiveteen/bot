@@ -56,7 +56,9 @@ def test_full_flow(monkeypatch, html_sample, reddit_json, tmp_path: Path):
     #   run main() inside temp dir
     with monkeypatch.context() as m:
         m.chdir(tmp_path)
-        SRC.main()
+        m.setattr(SRC, "CSV_OUTPUT", Path("decline_index.csv"))
+        m.setattr(SRC, "AGGREGATORS", ["Transak"])
+        assert SRC.main() == 0
         assert Path("decline_index.csv").exists()
         df = SRC.pd.read_csv("decline_index.csv")
         assert not df.empty

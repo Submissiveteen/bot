@@ -1,19 +1,154 @@
-# Roadmap v1
+# Implementation Roadmap V1 (Conservative)
 
 ## P0
-- **DR_P0_001 – Fix dependencies and add dev tools**
-  - changes: `requirements.txt`, `pyproject.toml`
-  - commands: `pip install -r requirements.txt`, `ruff check .`, `ruff format .`, `black --check .`
-  - DoD: dependencies install; lint/format pass
-  - risk: low
-- **DR_P0_002 – Enable pytest discovery**
-  - changes: `pyproject.toml`, `crypto_decline_index/tests/__init__.py`
-  - commands: `pytest -q`
-  - DoD: tests run without ModuleNotFoundError
-  - risk: low
+
+- **DR_0001** — review and implement recommendations
+  - changes: ['docs/compliance/', 'static/', 'templates/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['UX review accepted', 'manual review by compliance officer', 'pytest -q passes']
+  - risk: ['KYC limitations', 'flaky tests', 'regulatory changes']
+  - ref: [dr/analyses/DR_0001.yaml#L202-L216](dr/analyses/DR_0001.yaml#L202-L216)
+- **DR_0002** — review and implement recommendations
+  - changes: ['core/', 'docs/compliance/', 'integrations/', 'static/', 'templates/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['HTTP 200 from integration endpoints', 'UX review accepted', 'manual review by compliance officer', 'pytest -q passes']
+  - risk: ['API rate limits', 'KYC limitations', 'flaky tests', 'regulatory changes', 'third-party downtime']
+  - ref: [dr/analyses/DR_0002.yaml#L254-L273](dr/analyses/DR_0002.yaml#L254-L273)
+- **DR_0003** — review and implement recommendations
+  - changes: ['docs/compliance/', 'static/', 'templates/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['UX review accepted', 'manual review by compliance officer', 'pytest -q passes']
+  - risk: ['KYC limitations', 'flaky tests', 'regulatory changes']
+  - ref: [dr/analyses/DR_0003.yaml#L18-L32](dr/analyses/DR_0003.yaml#L18-L32)
+- **DR_0004** — review and implement recommendations
+  - changes: ['bot/', 'docs/compliance/', 'static/', 'templates/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['UX review accepted', 'manual review by compliance officer', 'pytest -q passes']
+  - risk: ['KYC limitations', 'flaky tests', 'regulatory changes']
+  - ref: [dr/analyses/DR_0004.yaml#L39-L54](dr/analyses/DR_0004.yaml#L39-L54)
+- **DR_0005** — review and implement recommendations
+  - changes: ['bot/', 'core/', 'docs/compliance/', 'integrations/', 'static/', 'templates/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['HTTP 200 from integration endpoints', 'UX review accepted', 'manual review by compliance officer', 'pytest -q passes']
+  - risk: ['API rate limits', 'KYC limitations', 'flaky tests', 'regulatory changes', 'third-party downtime']
+  - ref: [dr/analyses/DR_0005.yaml#L40-L60](dr/analyses/DR_0005.yaml#L40-L60)
+- **DR_0006** — review and implement recommendations
+  - changes: ['bot/', 'core/', 'docs/compliance/', 'integrations/', 'static/', 'templates/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['HTTP 200 from integration endpoints', 'UX review accepted', 'manual review by compliance officer', 'pytest -q passes']
+  - risk: ['API rate limits', 'KYC limitations', 'flaky tests', 'regulatory changes', 'third-party downtime']
+  - ref: [dr/analyses/DR_0006.yaml#L400-L420](dr/analyses/DR_0006.yaml#L400-L420)
+- **DR_0007** — review and implement recommendations
+  - changes: ['bot/', 'docs/compliance/', 'static/', 'templates/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['UX review accepted', 'manual review by compliance officer', 'pytest -q passes']
+  - risk: ['KYC limitations', 'flaky tests', 'regulatory changes']
+  - ref: [dr/analyses/DR_0007.yaml#L30-L45](dr/analyses/DR_0007.yaml#L30-L45)
+- **DR_0008** — review and implement recommendations
+  - changes: ['bot/', 'core/', 'docs/compliance/', 'integrations/', 'static/', 'templates/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['HTTP 200 from integration endpoints', 'UX review accepted', 'manual review by compliance officer', 'pytest -q passes', 'vulnerability scan clean']
+  - risk: ['API rate limits', 'KYC limitations', 'data breaches', 'flaky tests', 'misconfigured auth', 'regulatory changes', 'third-party downtime']
+  - ref: [dr/analyses/DR_0008.yaml#L406-L429](dr/analyses/DR_0008.yaml#L406-L429)
 
 ## P1
-_No DR analyses found._
+
+- **DR_0009** — review and implement recommendations
+  - changes: ['tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['pytest -q passes']
+  - risk: ['flaky tests']
+  - ref: [dr/analyses/DR_0009.yaml#L10-L17](dr/analyses/DR_0009.yaml#L10-L17)
+- **DR_0010** — review and implement recommendations
+  - changes: ['static/', 'templates/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['UX review accepted']
+  - risk: ['general implementation risk']
+  - ref: [dr/analyses/DR_0010.yaml#L14-L22](dr/analyses/DR_0010.yaml#L14-L22)
+- **DR_0011** — review and implement recommendations
+  - changes: ['bot/', 'docs/compliance/', 'static/', 'templates/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['UX review accepted', 'manual review by compliance officer', 'pytest -q passes']
+  - risk: ['KYC limitations', 'flaky tests', 'regulatory changes']
+  - ref: [dr/analyses/DR_0011.yaml#L34-L49](dr/analyses/DR_0011.yaml#L34-L49)
+- **DR_0012** — review and implement recommendations
+  - changes: ['(none specified)']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['pytest -q passes']
+  - risk: ['general implementation risk']
+  - ref: [dr/analyses/DR_0012.yaml#L23-L29](dr/analyses/DR_0012.yaml#L23-L29)
+- **DR_0013** — review and implement recommendations
+  - changes: ['bot/', 'docs/compliance/', 'static/', 'templates/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['UX review accepted', 'manual review by compliance officer', 'pytest -q passes']
+  - risk: ['KYC limitations', 'flaky tests', 'regulatory changes']
+  - ref: [dr/analyses/DR_0013.yaml#L29-L44](dr/analyses/DR_0013.yaml#L29-L44)
+- **DR_0014** — review and implement recommendations
+  - changes: ['core/', 'docs/compliance/', 'integrations/', 'static/', 'templates/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['HTTP 200 from integration endpoints', 'UX review accepted', 'manual review by compliance officer', 'pytest -q passes']
+  - risk: ['API rate limits', 'KYC limitations', 'flaky tests', 'regulatory changes', 'third-party downtime']
+  - ref: [dr/analyses/DR_0014.yaml#L247-L266](dr/analyses/DR_0014.yaml#L247-L266)
+- **DR_0015** — review and implement recommendations
+  - changes: ['(none specified)']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['pytest -q passes']
+  - risk: ['general implementation risk']
+  - ref: [dr/analyses/DR_0015.yaml#L16-L22](dr/analyses/DR_0015.yaml#L16-L22)
+- **DR_0016** — review and implement recommendations
+  - changes: ['bot/', 'static/', 'templates/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['UX review accepted', 'pytest -q passes']
+  - risk: ['flaky tests']
+  - ref: [dr/analyses/DR_0016.yaml#L29-L40](dr/analyses/DR_0016.yaml#L29-L40)
 
 ## P2
-_No DR analyses found._
+
+- **DR_0017** — review and implement recommendations
+  - changes: ['(none specified)']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['pytest -q passes']
+  - risk: ['general implementation risk']
+  - ref: [dr/analyses/DR_0017.yaml#L19-L25](dr/analyses/DR_0017.yaml#L19-L25)
+- **DR_0018** — review and implement recommendations
+  - changes: ['docs/compliance/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['manual review by compliance officer', 'pytest -q passes']
+  - risk: ['KYC limitations', 'flaky tests', 'regulatory changes']
+  - ref: [dr/analyses/DR_0018.yaml#L23-L34](dr/analyses/DR_0018.yaml#L23-L34)
+- **DR_0019** — review and implement recommendations
+  - changes: ['docs/compliance/', 'static/', 'templates/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['UX review accepted', 'manual review by compliance officer', 'pytest -q passes']
+  - risk: ['KYC limitations', 'flaky tests', 'regulatory changes']
+  - ref: [dr/analyses/DR_0019.yaml#L29-L43](dr/analyses/DR_0019.yaml#L29-L43)
+- **DR_0020** — review and implement recommendations
+  - changes: ['core/', 'docs/compliance/', 'integrations/', 'static/', 'templates/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['HTTP 200 from integration endpoints', 'UX review accepted', 'manual review by compliance officer', 'pytest -q passes']
+  - risk: ['API rate limits', 'KYC limitations', 'flaky tests', 'regulatory changes', 'third-party downtime']
+  - ref: [dr/analyses/DR_0020.yaml#L67-L86](dr/analyses/DR_0020.yaml#L67-L86)
+- **DR_0021** — review and implement recommendations
+  - changes: ['(none specified)']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['pytest -q passes']
+  - risk: ['general implementation risk']
+  - ref: [dr/analyses/DR_0021.yaml#L10-L16](dr/analyses/DR_0021.yaml#L10-L16)
+- **DR_0022** — review and implement recommendations
+  - changes: ['static/', 'templates/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['UX review accepted', 'pytest -q passes']
+  - risk: ['flaky tests']
+  - ref: [dr/analyses/DR_0022.yaml#L24-L34](dr/analyses/DR_0022.yaml#L24-L34)
+- **DR_0023** — review and implement recommendations
+  - changes: ['core/', 'docs/compliance/', 'integrations/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['HTTP 200 from integration endpoints', 'manual review by compliance officer', 'pytest -q passes']
+  - risk: ['API rate limits', 'KYC limitations', 'flaky tests', 'regulatory changes', 'third-party downtime']
+  - ref: [dr/analyses/DR_0023.yaml#L68-L84](dr/analyses/DR_0023.yaml#L68-L84)
+- **DR_0024** — review and implement recommendations
+  - changes: ['core/', 'integrations/', 'static/', 'templates/', 'tests/']
+  - commands: ['ruff check .', 'ruff format .', 'black --check .', 'pytest -q']
+  - DoD: ['HTTP 200 from integration endpoints', 'UX review accepted', 'pytest -q passes', 'vulnerability scan clean']
+  - risk: ['API rate limits', 'data breaches', 'flaky tests', 'misconfigured auth', 'third-party downtime']
+  - ref: [dr/analyses/DR_0024.yaml#L56-L74](dr/analyses/DR_0024.yaml#L56-L74)

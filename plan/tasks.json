@@ -1,18 +1,685 @@
 [
   {
-    "id": "P0-1",
-    "title": "Fix dependencies and add dev tools",
-    "changes": ["requirements.txt", "pyproject.toml"],
-    "commands": ["pip install -r requirements.txt", "ruff check .", "ruff format .", "black --check ."],
-    "dod": ["Dependencies install", "Lint and format pass"],
-    "risk": "low"
+    "id": "DR_0001",
+    "title": "review and implement recommendations",
+    "changes": [
+      "docs/compliance/",
+      "static/",
+      "templates/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "UX review accepted",
+      "manual review by compliance officer",
+      "pytest -q passes"
+    ],
+    "risk": [
+      "KYC limitations",
+      "flaky tests",
+      "regulatory changes"
+    ],
+    "dr_ids": [
+      "DR_0001"
+    ]
   },
   {
-    "id": "P0-2",
-    "title": "Enable pytest discovery",
-    "changes": ["pyproject.toml", "crypto_decline_index/tests/__init__.py"],
-    "commands": ["pytest -q"],
-    "dod": ["Tests run without ModuleNotFoundError"],
-    "risk": "low"
+    "id": "DR_0002",
+    "title": "review and implement recommendations",
+    "changes": [
+      "core/",
+      "docs/compliance/",
+      "integrations/",
+      "static/",
+      "templates/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "HTTP 200 from integration endpoints",
+      "UX review accepted",
+      "manual review by compliance officer",
+      "pytest -q passes"
+    ],
+    "risk": [
+      "API rate limits",
+      "KYC limitations",
+      "flaky tests",
+      "regulatory changes",
+      "third-party downtime"
+    ],
+    "dr_ids": [
+      "DR_0002"
+    ]
+  },
+  {
+    "id": "DR_0003",
+    "title": "review and implement recommendations",
+    "changes": [
+      "docs/compliance/",
+      "static/",
+      "templates/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "UX review accepted",
+      "manual review by compliance officer",
+      "pytest -q passes"
+    ],
+    "risk": [
+      "KYC limitations",
+      "flaky tests",
+      "regulatory changes"
+    ],
+    "dr_ids": [
+      "DR_0003"
+    ]
+  },
+  {
+    "id": "DR_0004",
+    "title": "review and implement recommendations",
+    "changes": [
+      "bot/",
+      "docs/compliance/",
+      "static/",
+      "templates/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "UX review accepted",
+      "manual review by compliance officer",
+      "pytest -q passes"
+    ],
+    "risk": [
+      "KYC limitations",
+      "flaky tests",
+      "regulatory changes"
+    ],
+    "dr_ids": [
+      "DR_0004"
+    ]
+  },
+  {
+    "id": "DR_0005",
+    "title": "review and implement recommendations",
+    "changes": [
+      "bot/",
+      "core/",
+      "docs/compliance/",
+      "integrations/",
+      "static/",
+      "templates/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "HTTP 200 from integration endpoints",
+      "UX review accepted",
+      "manual review by compliance officer",
+      "pytest -q passes"
+    ],
+    "risk": [
+      "API rate limits",
+      "KYC limitations",
+      "flaky tests",
+      "regulatory changes",
+      "third-party downtime"
+    ],
+    "dr_ids": [
+      "DR_0005"
+    ]
+  },
+  {
+    "id": "DR_0006",
+    "title": "review and implement recommendations",
+    "changes": [
+      "bot/",
+      "core/",
+      "docs/compliance/",
+      "integrations/",
+      "static/",
+      "templates/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "HTTP 200 from integration endpoints",
+      "UX review accepted",
+      "manual review by compliance officer",
+      "pytest -q passes"
+    ],
+    "risk": [
+      "API rate limits",
+      "KYC limitations",
+      "flaky tests",
+      "regulatory changes",
+      "third-party downtime"
+    ],
+    "dr_ids": [
+      "DR_0006"
+    ]
+  },
+  {
+    "id": "DR_0007",
+    "title": "review and implement recommendations",
+    "changes": [
+      "bot/",
+      "docs/compliance/",
+      "static/",
+      "templates/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "UX review accepted",
+      "manual review by compliance officer",
+      "pytest -q passes"
+    ],
+    "risk": [
+      "KYC limitations",
+      "flaky tests",
+      "regulatory changes"
+    ],
+    "dr_ids": [
+      "DR_0007"
+    ]
+  },
+  {
+    "id": "DR_0008",
+    "title": "review and implement recommendations",
+    "changes": [
+      "bot/",
+      "core/",
+      "docs/compliance/",
+      "integrations/",
+      "static/",
+      "templates/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "HTTP 200 from integration endpoints",
+      "UX review accepted",
+      "manual review by compliance officer",
+      "pytest -q passes",
+      "vulnerability scan clean"
+    ],
+    "risk": [
+      "API rate limits",
+      "KYC limitations",
+      "data breaches",
+      "flaky tests",
+      "misconfigured auth",
+      "regulatory changes",
+      "third-party downtime"
+    ],
+    "dr_ids": [
+      "DR_0008"
+    ]
+  },
+  {
+    "id": "DR_0009",
+    "title": "review and implement recommendations",
+    "changes": [
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "pytest -q passes"
+    ],
+    "risk": [
+      "flaky tests"
+    ],
+    "dr_ids": [
+      "DR_0009"
+    ]
+  },
+  {
+    "id": "DR_0010",
+    "title": "review and implement recommendations",
+    "changes": [
+      "static/",
+      "templates/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "UX review accepted"
+    ],
+    "risk": [
+      "general implementation risk"
+    ],
+    "dr_ids": [
+      "DR_0010"
+    ]
+  },
+  {
+    "id": "DR_0011",
+    "title": "review and implement recommendations",
+    "changes": [
+      "bot/",
+      "docs/compliance/",
+      "static/",
+      "templates/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "UX review accepted",
+      "manual review by compliance officer",
+      "pytest -q passes"
+    ],
+    "risk": [
+      "KYC limitations",
+      "flaky tests",
+      "regulatory changes"
+    ],
+    "dr_ids": [
+      "DR_0011"
+    ]
+  },
+  {
+    "id": "DR_0012",
+    "title": "review and implement recommendations",
+    "changes": [],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "pytest -q passes"
+    ],
+    "risk": [
+      "general implementation risk"
+    ],
+    "dr_ids": [
+      "DR_0012"
+    ]
+  },
+  {
+    "id": "DR_0013",
+    "title": "review and implement recommendations",
+    "changes": [
+      "bot/",
+      "docs/compliance/",
+      "static/",
+      "templates/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "UX review accepted",
+      "manual review by compliance officer",
+      "pytest -q passes"
+    ],
+    "risk": [
+      "KYC limitations",
+      "flaky tests",
+      "regulatory changes"
+    ],
+    "dr_ids": [
+      "DR_0013"
+    ]
+  },
+  {
+    "id": "DR_0014",
+    "title": "review and implement recommendations",
+    "changes": [
+      "core/",
+      "docs/compliance/",
+      "integrations/",
+      "static/",
+      "templates/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "HTTP 200 from integration endpoints",
+      "UX review accepted",
+      "manual review by compliance officer",
+      "pytest -q passes"
+    ],
+    "risk": [
+      "API rate limits",
+      "KYC limitations",
+      "flaky tests",
+      "regulatory changes",
+      "third-party downtime"
+    ],
+    "dr_ids": [
+      "DR_0014"
+    ]
+  },
+  {
+    "id": "DR_0015",
+    "title": "review and implement recommendations",
+    "changes": [],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "pytest -q passes"
+    ],
+    "risk": [
+      "general implementation risk"
+    ],
+    "dr_ids": [
+      "DR_0015"
+    ]
+  },
+  {
+    "id": "DR_0016",
+    "title": "review and implement recommendations",
+    "changes": [
+      "bot/",
+      "static/",
+      "templates/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "UX review accepted",
+      "pytest -q passes"
+    ],
+    "risk": [
+      "flaky tests"
+    ],
+    "dr_ids": [
+      "DR_0016"
+    ]
+  },
+  {
+    "id": "DR_0017",
+    "title": "review and implement recommendations",
+    "changes": [],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "pytest -q passes"
+    ],
+    "risk": [
+      "general implementation risk"
+    ],
+    "dr_ids": [
+      "DR_0017"
+    ]
+  },
+  {
+    "id": "DR_0018",
+    "title": "review and implement recommendations",
+    "changes": [
+      "docs/compliance/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "manual review by compliance officer",
+      "pytest -q passes"
+    ],
+    "risk": [
+      "KYC limitations",
+      "flaky tests",
+      "regulatory changes"
+    ],
+    "dr_ids": [
+      "DR_0018"
+    ]
+  },
+  {
+    "id": "DR_0019",
+    "title": "review and implement recommendations",
+    "changes": [
+      "docs/compliance/",
+      "static/",
+      "templates/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "UX review accepted",
+      "manual review by compliance officer",
+      "pytest -q passes"
+    ],
+    "risk": [
+      "KYC limitations",
+      "flaky tests",
+      "regulatory changes"
+    ],
+    "dr_ids": [
+      "DR_0019"
+    ]
+  },
+  {
+    "id": "DR_0020",
+    "title": "review and implement recommendations",
+    "changes": [
+      "core/",
+      "docs/compliance/",
+      "integrations/",
+      "static/",
+      "templates/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "HTTP 200 from integration endpoints",
+      "UX review accepted",
+      "manual review by compliance officer",
+      "pytest -q passes"
+    ],
+    "risk": [
+      "API rate limits",
+      "KYC limitations",
+      "flaky tests",
+      "regulatory changes",
+      "third-party downtime"
+    ],
+    "dr_ids": [
+      "DR_0020"
+    ]
+  },
+  {
+    "id": "DR_0021",
+    "title": "review and implement recommendations",
+    "changes": [],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "pytest -q passes"
+    ],
+    "risk": [
+      "general implementation risk"
+    ],
+    "dr_ids": [
+      "DR_0021"
+    ]
+  },
+  {
+    "id": "DR_0022",
+    "title": "review and implement recommendations",
+    "changes": [
+      "static/",
+      "templates/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "UX review accepted",
+      "pytest -q passes"
+    ],
+    "risk": [
+      "flaky tests"
+    ],
+    "dr_ids": [
+      "DR_0022"
+    ]
+  },
+  {
+    "id": "DR_0023",
+    "title": "review and implement recommendations",
+    "changes": [
+      "core/",
+      "docs/compliance/",
+      "integrations/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "HTTP 200 from integration endpoints",
+      "manual review by compliance officer",
+      "pytest -q passes"
+    ],
+    "risk": [
+      "API rate limits",
+      "KYC limitations",
+      "flaky tests",
+      "regulatory changes",
+      "third-party downtime"
+    ],
+    "dr_ids": [
+      "DR_0023"
+    ]
+  },
+  {
+    "id": "DR_0024",
+    "title": "review and implement recommendations",
+    "changes": [
+      "core/",
+      "integrations/",
+      "static/",
+      "templates/",
+      "tests/"
+    ],
+    "commands": [
+      "ruff check .",
+      "ruff format .",
+      "black --check .",
+      "pytest -q"
+    ],
+    "dod": [
+      "HTTP 200 from integration endpoints",
+      "UX review accepted",
+      "pytest -q passes",
+      "vulnerability scan clean"
+    ],
+    "risk": [
+      "API rate limits",
+      "data breaches",
+      "flaky tests",
+      "misconfigured auth",
+      "third-party downtime"
+    ],
+    "dr_ids": [
+      "DR_0024"
+    ]
   }
 ]

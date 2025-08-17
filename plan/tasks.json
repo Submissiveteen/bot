@@ -27,7 +27,7 @@
     "dr_ids": [
       "DR_0001"
     ],
-    "status": "pending",
+    "status": "waiting-external",
     "depends_on": [],
     "roadmap_ref": "plan/roadmap_v1.md#L5-L10"
   },

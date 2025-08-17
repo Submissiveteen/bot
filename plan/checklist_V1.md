@@ -1,7 +1,6 @@
 # Checklist V1
 
 ## Remaining
-- [ ] DR_0001 — review and implement recommendations
 - [ ] DR_0002 — review and implement recommendations
 - [ ] DR_0003 — review and implement recommendations
 - [ ] DR_0004 — review and implement recommendations
@@ -27,4 +26,8 @@
 - [ ] DR_0024 — review and implement recommendations
 
 ## Done
+- [x] DR_0001 — review and implement recommendations ([PR #8](https://github.com/Submissiveteen/bot/pull/8))
+  - [x] pytest -q passes ([PR #8](https://github.com/Submissiveteen/bot/pull/8))
+  - [ ] UX review accepted (issue link TBD)
+  - [ ] Compliance sign-off (issue link TBD)
 

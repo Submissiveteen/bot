@@ -1,3 +1,5 @@
+"""Simple HTTP status utilities."""
+
 import requests
 
 

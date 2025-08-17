@@ -9,3 +9,6 @@ DR_0005 introduces dummy service health check.
 DR_0006 handles service timeouts gracefully.
 DR_0007 adds farewell messaging.
 DR_0008 enforces HTTPS for service checks.
+DR_0011 documents roadmap stage messaging.
+DR_0013 notes code generation phase start.
+DR_0014 adds environment validation guidelines.

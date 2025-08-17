@@ -4,50 +4,76 @@ import re
 import threading
 from pathlib import Path
 from typing import Dict, Optional
+
 import pandas as pd
 import yaml
 
 from core.utils import load_yaml_config, CachedValue
 from core.logging_config import setup_logging
 from core.signature import SIGNATURE_REGISTRY
-from core.deeplink_builder import DeeplinkBuilder, validate_deeplink_params, inject_signature
+from core.deeplink_builder import (
+    DeeplinkBuilder,
+    validate_deeplink_params,
+    inject_signature,
+)
+from core.schema_validator import is_valid_amount, is_valid_wallet
 
 setup_logging()
 
-_DATA_DIR = Path(os.getenv("AGG_ENGINE_DATA_DIR", Path(__file__).resolve().parent.parent / "data"))
-
 _DEFAULT_CLUSTER_MAP = {
-    "DE": "EU_SEPA", "FR": "EU_SEPA", "FI": "NORDICS",
-    "SE": "NORDICS", "EE": "BALTICS", "LT": "BALTICS", "LV": "BALTICS",
-    "CA": "CA", "CH": "EFTA_CH", "GB": "UK"
+    "DE": "EU_SEPA",
+    "FR": "EU_SEPA",
+    "FI": "NORDICS",
+    "SE": "NORDICS",
+    "EE": "BALTICS",
+    "LT": "BALTICS",
+    "LV": "BALTICS",
+    "CA": "CA",
+    "CH": "EFTA_CH",
+    "GB": "UK",
 }
 
 _DEFAULT_TIERS = {
     "TIER1": 500,
     "TIER2": 2000,
-    "TIER3": float("inf")
+    "TIER3": float("inf"),
 }
-builder = DeeplinkBuilder(template)
-params = inject_signature(name, params, secret)
-deeplink = builder.render(params)
+
 
 class AggregatorEngine:
     def __init__(self):
         self._data = CachedValue(self._load_data, ttl=600)
         self._weights = CachedValue(self._load_weights, ttl=300)
-        self._cluster_map = load_yaml_config(_DATA_DIR / "cluster_map.yaml", fallback=_DEFAULT_CLUSTER_MAP)
-        self._tiers = load_yaml_config(Path("config/tier_thresholds.yml"), fallback=_DEFAULT_TIERS)
+        self._cluster_map = load_yaml_config(
+            Path("config/cluster_map.yml"), fallback=_DEFAULT_CLUSTER_MAP
+        )
+        self._tiers = load_yaml_config(
+            Path("config/tier_thresholds.yml"), fallback=_DEFAULT_TIERS
+        )
         self._mutex = threading.RLock()
 
-    def generate_deeplink(self, aggregator: str, amount: float, fiat: str, crypto: str,
-                           wallet: str, partner_secret: Optional[str] = None,
-                           extra_params: Optional[Dict[str, str]] = None) -> str:
+    def generate_deeplink(
+        self,
+        aggregator: str,
+        amount: float,
+        fiat: str,
+        crypto: str,
+        wallet: str,
+        partner_secret: Optional[str] = None,
+        extra_params: Optional[Dict[str, str]] = None,
+    ) -> str:
         row = self._get_aggregator_row(aggregator)
         template = row.get("DeeplinkTemplate", "")
+        if not is_valid_amount(amount):
+            raise ValueError(f"Invalid amount: {amount}")
+        if not is_valid_wallet(wallet, crypto):
+            raise ValueError(f"Invalid wallet address for {crypto}: {wallet}")
         params = self._build_deeplink_params(amount, fiat, crypto, wallet, extra_params)
 
         if "${signature}" in template:
-            params = self._inject_signature(aggregator, params, partner_secret, template)
+            params = self._inject_signature(
+                aggregator, params, partner_secret, template
+            )
 
         return self._substitute_template(template, params)
 
@@ -59,7 +85,12 @@ class AggregatorEngine:
         return rows.iloc[0]
 
     def _build_deeplink_params(self, amount, fiat, crypto, wallet, extra):
-        params = {"amount": str(amount), "fiat": fiat, "crypto": crypto, "wallet": wallet}
+        params = {
+            "amount": str(amount),
+            "fiat": fiat,
+            "crypto": crypto,
+            "wallet": wallet,
+        }
         if extra:
             params.update(extra)
         return params
@@ -71,7 +102,9 @@ class AggregatorEngine:
             strategy = SIGNATURE_REGISTRY[aggregator.lower()]
             params["signature"] = strategy.sign(params, secret)
         else:
-            logging.warning(f"Aggregator '{aggregator}' has signature placeholder but no strategy defined")
+            logging.warning(
+                f"Aggregator '{aggregator}' has signature placeholder but no strategy defined"
+            )
         return params
 
     def _substitute_template(self, template, params):
@@ -86,7 +119,7 @@ class AggregatorEngine:
         patterns = {
             2: ["passport", "government", "gov", "id"],
             3: ["poa"],
-            4: ["source of funds", "income", "bank statement"]
+            4: ["source of funds", "income", "bank statement"],
         }
         for level, keys in patterns.items():
             for key in keys:

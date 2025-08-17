@@ -227,3 +227,30 @@ def get_secure_service_message(url: str) -> str:
 
     data = json.loads(Path("templates/messages_ru.json").read_text(encoding="utf-8"))
     return data["service_ok"] if secure_service_ok(url) else data["service_insecure"]
+
+
+def get_stage6_title() -> str:
+    """Return title for roadmap stage 6."""
+    import json
+    from pathlib import Path
+
+    data = json.loads(Path("templates/messages_ru.json").read_text(encoding="utf-8"))
+    return data["stage6_title"]
+
+
+def get_codegen_intro_message() -> str:
+    """Return intro message for code generation phase."""
+    import json
+    from pathlib import Path
+
+    data = json.loads(Path("templates/messages_ru.json").read_text(encoding="utf-8"))
+    return data["codegen_intro"]
+
+
+def get_evidence_message() -> str:
+    """Return message for evidence matrix stage."""
+    import json
+    from pathlib import Path
+
+    data = json.loads(Path("templates/messages_ru.json").read_text(encoding="utf-8"))
+    return data["evidence_intro"]

@@ -9,3 +9,8 @@ DR_0005 adds service status icon.
 DR_0006 adds timeout indicator asset.
 DR_0007 adds farewell banner.
 DR_0008 adds HTTPS badge.
+DR_0010 adds roadmap overview placeholder.
+DR_0011 adds Stage 6 title placeholder.
+DR_0013 adds code generation intro asset.
+DR_0014 documents environment setup assets.
+DR_0016 adds decision matrix placeholder.

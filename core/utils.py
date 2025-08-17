@@ -1,9 +1,11 @@
+import os
 import re
 import time
 import uuid
 from pathlib import Path
 from typing import Dict
 
+import logging
 import yaml
 
 from integrations import status as status_integration
@@ -15,6 +17,15 @@ def load_yaml_config(path: Path, fallback: dict | None = None) -> dict:
             return yaml.safe_load(f)
     except Exception:
         return fallback or {}
+
+
+def validate_environment() -> None:
+    """Verify required environment variables are present and non-empty."""
+    required_keys = ["BOT_TOKEN", "BITVALEX_SECRET", "CRYPTOMUS_SECRET"]
+    missing = [key for key in required_keys if not os.getenv(key)]
+    if missing:
+        logging.error(f"Missing required environment variables: {missing}")
+        raise RuntimeError("Missing required env vars: " + ", ".join(missing))
 
 
 def normalize_currency(value: str) -> str:
@@ -58,6 +69,7 @@ def normalize_country(name: str) -> str:
 
 
 # ---- DR_0003–DR_0008 helpers (из bundle) ----
+
 
 def generate_uuid() -> str:
     """Return random UUID string."""

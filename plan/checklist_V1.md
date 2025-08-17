@@ -1,22 +1,14 @@
 # Checklist V1
 
 ## Remaining
- - [ ] DR_0009 — review and implement recommendations
- - [ ] DR_0010 — review and implement recommendations
- - [ ] DR_0011 — review and implement recommendations
- - [ ] DR_0012 — review and implement recommendations
- - [ ] DR_0013 — review and implement recommendations
- - [ ] DR_0014 — review and implement recommendations
- - [ ] DR_0015 — review and implement recommendations
- - [ ] DR_0016 — review and implement recommendations
- - [ ] DR_0017 — review and implement recommendations
- - [ ] DR_0018 — review and implement recommendations
- - [ ] DR_0019 — review and implement recommendations
- - [ ] DR_0020 — review and implement recommendations
- - [ ] DR_0021 — review and implement recommendations
- - [ ] DR_0022 — review and implement recommendations
- - [ ] DR_0023 — review and implement recommendations
- - [ ] DR_0024 — review and implement recommendations
+- [ ] DR_0017 — review and implement recommendations
+- [ ] DR_0018 — review and implement recommendations
+- [ ] DR_0019 — review and implement recommendations
+- [ ] DR_0020 — review and implement recommendations
+- [ ] DR_0021 — review and implement recommendations
+- [ ] DR_0022 — review and implement recommendations
+- [ ] DR_0023 — review and implement recommendations
+- [ ] DR_0024 — review and implement recommendations
 
 ## Done
 - [x] DR_0001 — review and implement recommendations (waiting-external, [PR #8](https://github.com/Submissiveteen/bot/pull/8); follow-up [PR #5](https://github.com/Submissiveteen/bot/pull/5))
@@ -62,3 +54,28 @@
   - [x] HTTP 200 from integration endpoints ([PR #10](https://github.com/Submissiveteen/bot/pull/10))
   - [ ] UX review accepted (pending-auth)
   - [ ] Compliance sign-off (pending-auth)
+
+- [x] DR_0009 — review and implement recommendations
+  - [x] pytest -q passes
+- [x] DR_0010 — review and implement recommendations (waiting-external)
+  - [ ] UX review accepted (pending-auth)
+- [x] DR_0011 — review and implement recommendations (waiting-external)
+  - [x] pytest -q passes
+  - [ ] UX review accepted (pending-auth)
+  - [ ] Compliance sign-off (pending-auth)
+- [x] DR_0012 — review and implement recommendations
+  - [x] pytest -q passes
+- [x] DR_0013 — review and implement recommendations (waiting-external)
+  - [x] pytest -q passes
+  - [ ] UX review accepted (pending-auth)
+  - [ ] Compliance sign-off (pending-auth)
+- [x] DR_0014 — review and implement recommendations (waiting-external)
+  - [ ] HTTP 200 from integration endpoints (pending-auth)
+  - [ ] UX review accepted (pending-auth)
+  - [ ] Compliance sign-off (pending-auth)
+  - [x] pytest -q passes
+- [x] DR_0015 — review and implement recommendations
+  - [x] pytest -q passes
+- [x] DR_0016 — review and implement recommendations (waiting-external)
+  - [x] pytest -q passes
+  - [ ] UX review accepted (pending-auth)

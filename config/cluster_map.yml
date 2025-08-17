@@ -1,0 +1,11 @@
+# Mapping of country ISO codes to region clusters
+DE: EU_SEPA
+FR: EU_SEPA
+FI: NORDICS
+SE: NORDICS
+EE: BALTICS
+LT: BALTICS
+LV: BALTICS
+CA: CA
+CH: EFTA_CH
+GB: UK

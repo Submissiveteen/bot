@@ -1,3 +1,4 @@
+# Tier thresholds for KYC levels (Tier1 and Tier2 in EUR)
 TIER1: 500
 TIER2: 2000
-TIER3: 10000
+TIER3: 1000000000

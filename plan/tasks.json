@@ -98,7 +98,7 @@
     "dr_ids": [
       "DR_0003"
     ],
-    "status": "pending",
+    "status": "waiting-external",
     "depends_on": [
       "DR_0002"
     ],
@@ -133,7 +133,7 @@
     "dr_ids": [
       "DR_0004"
     ],
-    "status": "pending",
+    "status": "waiting-external",
     "depends_on": [
       "DR_0003"
     ],
@@ -173,7 +173,7 @@
     "dr_ids": [
       "DR_0005"
     ],
-    "status": "pending",
+    "status": "waiting-external",
     "depends_on": [
       "DR_0004"
     ],
@@ -213,7 +213,7 @@
     "dr_ids": [
       "DR_0006"
     ],
-    "status": "pending",
+    "status": "waiting-external",
     "depends_on": [
       "DR_0005"
     ],
@@ -248,7 +248,7 @@
     "dr_ids": [
       "DR_0007"
     ],
-    "status": "pending",
+    "status": "waiting-external",
     "depends_on": [
       "DR_0006"
     ],
@@ -291,7 +291,7 @@
     "dr_ids": [
       "DR_0008"
     ],
-    "status": "pending",
+    "status": "waiting-external",
     "depends_on": [
       "DR_0007"
     ],

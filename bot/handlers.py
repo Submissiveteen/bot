@@ -184,3 +184,46 @@ async def back_to_menu_handler(msg: Message, state: FSMContext):
         reply_markup=start_kb,
     )
     await state.set_state(CryptoBotStates.start)
+
+
+def get_start_message() -> str:
+    """Return the localized start prompt."""
+    import json
+    from pathlib import Path
+
+    data = json.loads(Path("templates/messages_ru.json").read_text(encoding="utf-8"))
+    return data["start"]
+
+
+def get_service_status_message() -> str:
+    """Return human readable status of dummy service."""
+    import json
+    from pathlib import Path
+    from core.utils import dummy_service_status
+
+    data = json.loads(Path("templates/messages_ru.json").read_text(encoding="utf-8"))
+    status = dummy_service_status()
+    if status == "ok":
+        return data["service_ok"]
+    if status == "timeout":
+        return data["service_timeout"]
+    return data["service_fail"]
+
+
+def get_farewell_message() -> str:
+    """Return farewell template."""
+    import json
+    from pathlib import Path
+
+    data = json.loads(Path("templates/messages_ru.json").read_text(encoding="utf-8"))
+    return data["farewell"]
+
+
+def get_secure_service_message(url: str) -> str:
+    """Return message based on URL security."""
+    import json
+    from pathlib import Path
+    from core.utils import secure_service_ok
+
+    data = json.loads(Path("templates/messages_ru.json").read_text(encoding="utf-8"))
+    return data["service_ok"] if secure_service_ok(url) else data["service_insecure"]
